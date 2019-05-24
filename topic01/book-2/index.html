@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  Introduction to React and Storybook.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab-CRA_tool">
+          Lab-CRA_tool
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab-CRA_tool">
+            <h1>Create React App tool.</h1>
+<p>This lab introduces the create-react-app (CRA) tool for scaffolding and developing React apps.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>While <em>Storybook</em> is a tool for developing individual components, the <em>create-react-app</em> tool is for application (app) development. For convenience, we will use the &#39;course modules&#39; context again but add some small improvements.</p>
+<p>In the terminal window, create a new folder (away from <code>basicReactLab</code>). Go to this new folder and type the commands:</p>
+<pre><code>$ npx create-react-app course-app
+$ cd course-app</code></pre>
+<p>The first command <strong>scaffolded</strong> a React project, located in a new folder called <code>course-app</code> (see illustration).</p>
+<p><img src="./img/scaffold.png" alt=""></p>
+<p>It&#39;s actually a runnable app already. To prove it, type the command:</p>
+<pre><code>$ npm start</code></pre>
+<p>This command performs the following task sequence:</p>
+<ul>
+<li>Transpiles any JSX and ES6 code in the <code>src</code> folder. It starts with <code>src/index.js</code> and then follows the import statements to find other source file dependencies. Note, you will not see physical evidence of the transpiled files on the filesystem. This will only occur at the production stage (covered later).</li>
+<li>Starts a <strong>development-mode web server</strong> on port 3000.</li>
+<li>Opens a tab in your default web browser and issue a HTTP request to <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+<li>The server responds with <code>public/index.html</code>, followed by relevant assets (transpiled JS, CSS etc).</li>
+</ul>
+<p>The server performs <strong>live reloading</strong>: watches all project source files for updates and re-transpiles and reloads the app in the browser when changes occur.</p>
+<p>The browser should now be displaying the default React app:</p>
+<p><img src="./img/default.png" alt=""></p>
+<p>We will mold this skeleton app into our simple custom app. The desired user interface we want is as follows:</p>
+<p><img src="./img/obj.png" alt=""></p>
+<p>The app&#39;s component hierarchy design will be as follows:</p>
+<pre><code>       App (default)
+        |
+        |
+        V
+      Course
+        |
+        |  (multiple)
+        V
+      Module</code></pre>
+<p>The App component renders a child called Course. Course renders many instances of a Module component. To achieve this, first create a sub-folder of <code>src</code> called <code>components</code>. </p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>The Components.</h2>
+<p>Create a new file <code>src/components/module.js</code> and paste in the following code:</p>
+<pre><code>import React , { Component } from &#39;react&#39;;
+
+export default class Module extends Component {
+    render() {
+        return (
+            &lt;tr&gt;
+                &lt;td&gt;{this.props.description.name}&lt;/td&gt;
+                &lt;td&gt;{this.props.description.noLectures}&lt;/td&gt;
+                &lt;td&gt;{this.props.description.noPracticals}&lt;/td&gt;
+            &lt;/tr&gt;
+        );
+    }
+
+}</code></pre>
+<p>Create a second file <code>src/components/course.js</code> and paste in the following:</p>
+<pre><code>import React , { Component } from &#39;react&#39;;
+import Module from &#39;./module&#39;
+
+export default class Course extends Component {
+    render() {
+        let list = this.props.modules.map(
+            (module, index) =&gt; &lt;Module key={index} description={module} /&gt;
+        );
+        return (
+            &lt;div&gt;
+                &lt;h1&gt;{`${this.props.title} modules table`} &lt;/h1&gt;
+                &lt;table className=&quot;table table-bordered&quot;&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Name&lt;/th&gt;
+                            &lt;th&gt;No lectures&lt;/th&gt;
+                            &lt;th&gt;No practicals&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody &gt;
+                        {list}
+                    &lt;/tbody &gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        );
+    }
+
+}</code></pre>
+<p>Download <a href="./img/wit_crest.png">this WIT logo image</a> and move it to the <code>src</code> folder.</p>
+<p>From the <code>course-app</code> folder commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Components completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Assemble the App.</h2>
+<p>In <code>src/App.js</code>, replace the entire content with the following:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import Course from &quot;./components/course&quot;;
+import &quot;./App.css&quot;;
+import witCrest from &quot;./wit_crest.png&quot;;
+
+class App extends Component {
+render() {
+    const modules = [
+    {
+        name: &quot;Web Dev&quot;,
+        noLectures: 1,
+        noPracticals: 2
+    },
+    {
+        name: &quot;Programming&quot;,
+        noLectures: 2,
+        noPracticals: 3
+    },
+    {
+        name: &quot;Database Systems&quot;,
+        noLectures: 2,
+        noPracticals: 2
+    },
+    {
+        name: &quot;DevOps&quot;,
+        noLectures: 2,
+        noPracticals: 2
+    },
+    {
+        name: &quot;Enterprise Web Dev&quot;,
+        noLectures: 2,
+        noPracticals: 3
+    }
+    ];
+    let name = &quot;HDip Computer Systems&quot;;
+
+    return (
+    &lt;div&gt;
+        &lt;header className=&quot;App-header&quot;&gt;
+            &lt;img src={witCrest} alt=&quot;logo&quot; /&gt;
+        &lt;/header&gt;
+        &lt;div className=&quot;course&quot;&gt;
+            &lt;Course title={name} modules={modules} /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    );
+}
+}
+export default App;</code></pre>
+<p>Replace the content of <code>src/App.css</code> with the following:</p>
+<pre><code>.App-header {
+    background-color: lightblue;
+    height: 120px;
+    padding: 10px;
+    color: white;
+}
+
+.course {
+    padding: 10px;
+}</code></pre>
+<p>Assuming the server is still running (if not, start it with &#39;$ npm start&#39;), the browser should now be rendering the desired result, except for some styling issues (see below). You should now review all the above code changes to ensure you understand how the app produced it&#39;s UI.</p>
+<p>From the <code>course-app</code> folder commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;App assembled&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>The Bootstrap CSS library.</h2>
+<p>The styling problem is due to our omission of the Bootstrap CSS file. Stop the server and install it as follows:</p>
+<pre><code>$ npm install --save  bootstrap@3.3.6
+$ npm start</code></pre>
+<p>The traditional approach (which we won&#39;t use) to referencing CSS is by adding a link tag to <code>index.html</code>:</p>
+<pre><code>&lt;link href=&quot;... path to CSS file ...&quot; rel=&quot;stylesheet&quot;&gt;</code></pre>
+<p>A newer and more developer-friendly approach is to reference it directly from the JS code. In <code>src/index.js</code> add the following line (at the top):</p>
+<pre><code>import &#39;../node_modules/bootstrap/dist/css/bootstrap.css&#39;;</code></pre>
+<p>Also, remove these two unnecessary lines:</p>
+<ol>
+<li>import * as serviceWorker from &#39;./serviceWorker&#39;;</li>
+<li>serviceWorker.unregister();</li>
+</ol>
+<p>The app should now be rendering as planned. </p>
+<p>From the <code>course-app</code> folder commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Styled with Bootstrap&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h2>Live reloading.</h2>
+<p>In <code>src/index.js</code> notice the statement:</p>
+<pre><code>ReactDOM.render(&lt;App /&gt;, document.getElementById(&#39;root&#39;));</code></pre>
+<p>This attaches the App component (and its subordinates - Course and Modules) to the browser&#39;s DOM at the element with id &#39;root&#39;. This element was declared by create-react-app in the body of <code>public/index.html</code>:</p>
+<pre><code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code></pre>
+<p>The tool&#39;s development server treats <code>public/index.html</code> as a template. At runtime it:</p>
+<ol>
+<li>Merges all the JS code, starting at <code>src/index.js</code>, into one JS asset. This includes your custom code, React and other third party libraries.</li>
+<li>Inserts a script tag into the body of <code>index.html</code> to reference that asset.</li>
+</ol>
+<p>During development mode their is no evidence of the merged JS on your filesystem. It only appears when in production mode.</p>
+<p>Live reloading is a great aid when debugging. As a simple example, suppose we deliberately add an error to <code>src/App.js</code> by changing the line:</p>
+<pre><code>let name = &quot;HDip Computer Systems&quot;;</code></pre>
+<p>to:</p>
+<pre><code>let course_name = &quot;HDip Computer Systems&quot;;</code></pre>
+<p>On saving this change the tool re-transpiles the code and reports any errors to the terminal window:</p>
+<p><img src="./img/error.png" alt=""></p>
+<p>Undo the change to fix the error.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h2>Building the app.</h2>
+<p>The app is now complete but clearly the development server environment is not suitable for a public-facing or production app. Transpilation should not be happening dynamically and all file sizes should be <strong>minified</strong>, thus improving load-time performance. To build a production-ready app, stop the development server and type the command:</p>
+<pre><code>$ npm run build</code></pre>
+<p>This creates a <code>build</code> folder to house the production-quality, static form of the app:</p>
+<p><img src="./img/build.png" alt=""></p>
+<p>All the app&#39;s JS code is stored in ONE JS file and the content is <strong>minified</strong>. The file name is a computed hash value to aid browser caching operations.</p>
+<p>To use the production version of the app we need a standard web server. If you already have one installed, start it from the <code>course-app/build</code> folder and view the app in the browser. Otherwise, install this simple HTTP server:</p>
+<pre><code>$ npm install -g httpserver</code></pre>
+<p>and start it from the <code>course-app/build</code> folder, as follows:</p>
+<pre><code>$ httpserver -p 8080</code></pre>
+<p>In the browser navigate to: <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p>Notice in the <code>.gitignore</code> file (generted by CRA) the <code>/build</code> folder is included - we  never commit generatyed files to a repository.</p>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>

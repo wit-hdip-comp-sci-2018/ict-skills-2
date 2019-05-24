@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  Introduction to React and Storybook.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab-React_Basics">
+          Lab-React_Basics
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="Solutions">
+          Solutions
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab-React_Basics">
+            <h1>ReactJs Basics.</h1>
+<p>This lab guides you through the basic concepts of ReactJS by completing a series of exercises aimed at producing a set of simple UI components.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>Download and unzip <a href="./archives/start.zip">this archive</a>. Open a terminal window, go to the base folder (<code>basicReactLab</code>) and type:</p>
+<pre><code>$ npm install</code></pre>
+<p>[This installs the JS modules needed (e.g. React and its dependencies) in a local folder, called <code>node_modules</code>.]</p>
+<p>The base folder contains the following top-level folder structure:</p>
+<pre><code>     basicReactLab
+       |
+       |---.storybook
+       |---components
+       |     |
+       |     |---exercises
+       |     |---samples
+       |
+       |---node_modules
+       |---stories
+       package.json</code></pre>
+<p>Your main focus will be on the two sub-folders of <code>components</code>. In the <code>components/samples</code> folder are the completed sample components covered in the lectures. The <code>components/exercises</code> folder has skeleton implementations of the components you will develop during this lab. In the terminal, from the base folder, type:</p>
+<pre><code>$ npx start-storybook -p 9001 -c .storybook</code></pre>
+<p>The npx tool runs the named executable, locating in <code>./node_modules/.bin</code>. The &#39;start-storybook&#39; executable transpiles all ES6 and JSX code (e.g. in <code>components/samples</code>) and starts the storybook web server on port 9001. Open a web browser and navigate to: <a href="http://localhost:9001">http://localhost:9001</a> </p>
+<p><img src="./img/storybook.png" alt=""> </p>
+<h3>The samples.</h3>
+<p>Each file in the <code>components/samples</code> folder contains a component implementation. The file names are prefixed with a sequence number (01<em>, 02</em> etc) to help relate it to the text name that appear in the side panel of the Storybook UI. For example, the component definition in <code>components/samples/03_props.js</code> can be seen in Storybook at &#39;Samples -&gt; 03 - component with props&#39;.</p>
+<p><img src="./img/numbers.png" alt=""> </p>
+<p>Briefly examine some of the other sample components - no need to fully understand the code, yet. Normally a component file name matches the component class name. This practice is not applied here (e.g. <code>03_props.js</code> contains the class <em>ComponentProps</em>) purely as a convenience.</p>
+<p>The Storybook server provides live-reloading - you can see the effect of code changes immediately. For example, in the browser, click the <code>01 - static component</code> sample. Open the file <code>components/samples/01_staticComponent.js</code> and change the list of languages to the following:</p>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Erlang&lt;/li&gt;
+&lt;li&gt;Clojure&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>On saving the change, return to the browser and notice the change is automatically reloaded,</p>
+<h3>The exercises folder</h3>
+<p>Click on any of the exercises components in the browser side panel to confirm they are not completed.</p>
+<p><img src="./img/exercises.png" alt=""> </p>
+<p>Leave the Storybook server running while completing this lab&#39;s exercises. If you do need to stop it type &#39;cntl/c&#39;. To restart type:</p>
+<pre><code>$ npx start-storybook -p 9001 -c .storybook</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>Exercise 1 (Static Component).</h2>
+<p><strong>You are required</strong> to use the React framework to implement a simple (static) component that renders a view similar to that illustrated below:</p>
+<p><img src="./img/exercise1.png" alt=""></p>
+<p>As a guide, the raw HTML table syntax for the above might look as follows:</p>
+<pre><code>  &lt;table className=&quot;table table-bordered&quot;&gt;
+       &lt;thead&gt;
+          &lt;tr&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;No lectures&lt;/th&gt;
+          &lt;th&gt;No practicals&lt;/th&gt;
+          &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody &gt;
+        &lt;tr&gt;
+          &lt;td&gt;DevOps&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Enterprise Web Dev&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody &gt;
+&lt;/table&gt;</code></pre>
+<p>For now assume exactly two modules are included in the table body. The story for this exercise is already implemented. In <code>stories/exercises.js</code> see:</p>
+<pre><code>.add(&quot;01 - static component&quot;, () =&gt; {
+  return &lt;CourseModulesStatic /&gt;;
+})</code></pre>
+<p>The steps to completing this exercise are:</p>
+<ul>
+<li><strong>Step 1</strong>: In the browser, in the side panel of the Storybook UI, click the link: &#39;Samples -&gt; 01 - static component&#39;. Examine the related component code in <code>components/samples/01_staticComponent.js</code>. Use this code as a guide for this exercise.</li>
+<li><strong>Step 2</strong>: In the Storybook UI, click the link: &#39;Exercises -&gt; 01 - static component&#39;. Open the related code:  <code>components/exercises/01_staticComponent.js</code>. Implement the render method to produce the desired output. </li>
+</ul>
+<p>As you work through this exercise, check how the component is rendering in the browser. Remember live-reloading is happens every time you perform a file save. </p>
+<p>You may wish to consult the <a href="./index.html#/Solutions">Exercise 1 solution</a>.</p>
+<p>On completion, stop the Storybook server and update the local Git repo:</p>
+<pre><code>    $ git add -A
+    $ git commit -m &quot;Exercise 1 completed&quot;</code></pre>
+<p>Restart the server:</p>
+<pre><code>  $ npx start-storybook -p 9001 -c .storybook</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Exercise 2 (Embedded variables).</h2>
+<p>In exercise 1 the course data was hard-coded in the JSX - course name, module details.  A slight improvement would be to place the data in local variables (e.g. a two-element array for the module details) and reference them from the JSX code as embedded variables. <strong>You are required</strong> to implement this impronovement, however, for convenience we will use a separate component. </p>
+<p>The story for this exercise is already implemented. In <code>stories/exercises.js</code> see:</p>
+<pre><code>    .add(&quot;02 - JSX embedded variables&quot;, () =&gt; {
+    return &lt;CourseModulesEmbeddedVars /&gt;;
+    })</code></pre>
+<p>The steps to completing this exercise are as before:</p>
+<ul>
+<li><strong>Step 1</strong>: In the browser, click the link: &#39;Samples -&gt; 02 - JSX embedded variables&#39;. Examine the related component code in <code>components/samples/02_embeddedVariables.js</code>. Use this code as a guide for this exercise.</li>
+<li><strong>Step 2</strong>: Open the file  <code>components/exercises/02_embeddedVars.js</code> and copy over the <em>render()</em> method from the solution to exercise 1. Now adapt the code to use emberred variables. Assume their is still exactly two modules in the table - no need for a loop construct. See hint below</li>
+<li><strong>Step 3</strong>: In the browser, click the link: &#39;Exercises -&gt; 02 - JSX embedded variables&#39; to see the result of your implementation. </li>
+</ul>
+<p>Hint: The pseudo-HTML code below is a guide to the solution required:</p>
+<pre><code>   . . . . . . 
+   &lt;tr&gt;
+      &lt;td&gt;{modules[1].name}&lt;/td&gt;
+      &lt;td&gt;modules[1].noLectures}&lt;/td&gt;
+      &lt;td&gt;{modules[1].noPracticals}&lt;/td&gt;
+    &lt;/tr&gt;
+    . . . . . . . </code></pre>
+<p>(See Exercise 2 solution <a href="./index.html#/Solutions">here</a>.)</p>
+<p>On completing the exercise, stop the server and type these commands:</p>
+<pre><code>    $ git add -A
+    $ git commit -m &quot;Exercise 2 completed&quot;</code></pre>
+<p>Restart the server.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>Exercise 3 (Props).</h2>
+<p>The next design improvement to our component is to make it <strong>reusable</strong> by passing any model data in as <strong>props</strong>. The component&#39;s props include:</p>
+<ul>
+<li>An array of (exactly two) modules and</li>
+<li>The course name. </li>
+</ul>
+<p>The story for this exercise is already implemented. In <code>stories/exercises.js</code> see:</p>
+<pre><code>    .add(&quot;03 - component with props&quot;, () =&gt; {
+      const twoModules = [modules[0], modules[1]];
+      return &lt;CourseModulesWithProps modules={twoModules} course={name} /&gt;;
+    })</code></pre>
+<p>Implement your solution in <code>components/exercises/03_props.js</code>. Use the <em>render()</em> method from the solution to exercise 2 as the starting point. Reference <code>components/samples/03_props.js</code> as a guide to the changes required. Make sure to use the prop names used in the story above:</p>
+<ul>
+<li>course</li>
+<li>modules</li>
+</ul>
+<p>In the browser, click &#39;Exercises -&gt; 03 component with props&#39; to see your solution render.
+On completing the exercise, stop the server and type these commands:</p>
+<pre><code>    $ git add -A
+    $ git commit -m &quot;Exercise 3 completed&quot;</code></pre>
+<p>Restart the server.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h2>Exercise 4 (Iteration).</h2>
+<p>In the previous exercise the component was hard-coded to expect a modules array prop of exactly two elements. It should be able to handle any <strong>array size</strong>. </p>
+<p><strong>You are required</strong> to implement your solution to this requirement in <code>components/exercises/04_iteration.js</code>. Use <code>components/samples/04_iteration.js</code> as a guide.</p>
+<p>The story for this exercise is already implemented. In <code>stories/exercises.js</code> see:</p>
+<pre><code> .add(&quot;04 - iteration&quot;, () =&gt; {
+    return &lt;CourseModulesCollections modules={modules} course={name} /&gt;;
+ });</code></pre>
+<p>THe Storybook page renders your solution on clicking &#39;Exercises -&gt; 04 - iteration&#39;. THe rendered output should be as follows:</p>
+<p><img src="./img/exercise4.png" alt=""> </p>
+<p>An outline solution is <a href="./index.html#/Solutions">available here</a>.</p>
+<p>On completing the exercise, update the local repository:</p>
+<pre><code>    $ git add -A
+    $ git commit -m &quot;Exercise 4 completed&quot;</code></pre>
+<p>That completes this part of the lab.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Solutions">
+            <h2>Exercise 1 (Static Component) solution.</h2>
+<pre><code>import React , { Component } from &#39;react&#39;;
+import &#39;../../node_modules/bootstrap/dist/css/bootstrap.css&#39;;
+
+export default class CourseModulesStatic extends Component {
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;HDip Computer Science - Modules table&lt;/h1&gt;
+        &lt;table className=&quot;table table-bordered&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;Name&lt;/th&gt;
+              &lt;th&gt;No lectures&lt;/th&gt;
+              &lt;th&gt;No practicals&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;td&gt;DevOps&lt;/td&gt;
+              &lt;td&gt;2&lt;/td&gt;
+              &lt;td&gt;2&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Enterprise Web Dev&lt;/td&gt;
+              &lt;td&gt;2&lt;/td&gt;
+              &lt;td&gt;2&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    );
+  }
+}</code></pre>
+<h2>Exercise 2 solution.</h2>
+<pre><code>    import React, { Component } from &quot;react&quot;;
+    import &quot;../../node_modules/bootstrap/dist/css/bootstrap.css&quot;;
+
+    export default class CourseModulesEmbeddedVars extends Component {
+    render() {
+        const course = &quot;HDip Computer Science - Modules table.&quot;;
+        const modules = [
+        {
+            name: &quot;DevOps&quot;,
+            noLectures: 2,
+            noPracticals: 2
+        },
+        {
+            name: &quot;Enterprise Web Dev&quot;,
+            noLectures: 3,
+            noPracticals: 2
+        }
+        ];
+        return (
+          &lt;div&gt;
+            &lt;h1&gt;{course}&lt;/h1&gt;
+            &lt;table className=&quot;table table-bordered&quot;&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+                &lt;th&gt;No lectures}&lt;/th&gt;
+                &lt;th&gt;No practicals}&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                &lt;td&gt;{modules[0].name}&lt;/td&gt;
+                &lt;td&gt;{modules[0].noLectures}&lt;/td&gt;
+                &lt;td&gt;{modules[0].noPracticals}&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                &lt;td&gt;{modules[1].name}&lt;/td&gt;
+                &lt;td&gt;{modules[1].noLectures}&lt;/td&gt;
+                &lt;td&gt;{modules[1].noPracticals}&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        );
+      }
+    }</code></pre>
+<h2>Exercise 4 (outline) solution .</h2>
+<pre><code>import React , { Component } from &#39;react&#39;;
+import &#39;../../node_modules/bootstrap/dist/css/bootstrap.css&#39;;
+
+export default class CourseModulesIteration extends Component { 
+
+    render() {
+        let list = this.props.modules.map((module, index) =&gt; { 
+            return (
+                &lt;tr key={index}&gt;
+                . . . . TODO . . . . 
+            &lt;/tr&gt;
+            );
+        });       
+        return (
+            &lt;div&gt;
+                &lt;h1&gt;{`${this.props.course} modules table`} &lt;/h1&gt;
+                &lt;table className=&quot;table table-bordered&quot;&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Name&lt;/th&gt;
+                            &lt;th&gt;No lectures&lt;/th&gt;
+                            &lt;th&gt;No practicals&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody &gt;
+                        . . . . TODO . . . . 
+                    &lt;/tbody &gt;
+                &lt;/table&gt;
+            &lt;/div&gt; 
+        );
+    } 
+
+}</code></pre>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>
