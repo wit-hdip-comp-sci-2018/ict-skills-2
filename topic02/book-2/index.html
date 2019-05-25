@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  React Component model.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab_Static_React_Apps-1">
+          Lab_Static_React_Apps-1
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
+        <a class="item" data-tab="06">
+          06
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab_Static_React_Apps-1">
+            <h1>Building React SPAs (Static).</h1>
+<p>Over the coming weeks we will build two React apps in parallel. A static version of each is the target of this lab.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>The two apps being developed over the coming weeks are:</p>
+<ul>
+<li>Contact list, and</li>
+<li>Hacker News. </li>
+</ul>
+<p>This lab is focused on step one of the <em>Thinking in React</em> process - the development process recommended by the React design team (discussed in a later lectures). This step is titled <code>Build a static version</code> of the app. In subsequent labs we will add user interaction and routing.</p>
+<p>Download <a href="./archives/start.zip">this zip</a> as the starting point and unzip it. It contains two skeleton apps, one for each of the above mentioned use case. The apps were generated with the <code>create-react-app</code> tool. We will also use Git to keep a log of the work done over the coming weeks.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>Contact List App.</h2>
+<h3>Setup.</h3>
+<p>In a terminal window, go to <code>twoApps/contactlist</code> folder and install the required packages:</p>
+<pre><code>    $ npm install</code></pre>
+<h3>UI Design.</h3>
+<p>The desired UI for this app looks as follows:</p>
+<p><img src="./img/contactsUI.png" alt=""></p>
+<p>The proposed component breakdown for this UI is illustrated below:</p>
+<p><img src="./img/contactsDesign.png" alt=""></p>
+<p>Therefore the set of components are:</p>
+<ol>
+<li>Header</li>
+<li>Filter controls</li>
+<li>List of contacts</li>
+<li>A contact </li>
+</ol>
+<p>This breakdown maps to the following component hierarchy:</p>
+<pre><code>                   App (Default)
+                    |
+      -----------------------------
+      |             |             |
+     Header   FilterControls  ContactList
+                                  |
+                               Contact</code></pre>
+<p>In the <code>src</code> folder create a new subfolder <code>components</code>. Inside this create the
+ following file structure to support the above design:</p>
+<p><img src="./img/contactfiles.png" alt=""></p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Header component.</h3>
+<p>In <code>src/components/header/index.js</code> add the following code:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+
+class Header extends Component {
+  render() {
+    return (
+      &lt;div className=&quot;container-fluid&quot;&gt;
+        &lt;div className=&quot;row&quot;&gt;
+          &lt;div className=&quot;col-md-6 offset-4&quot;&gt;
+            &lt;div className=&quot;page-header&quot;&gt;
+              &lt;h1&gt;
+                Contact List &lt;span className=&quot;badge badge-pill badge-success&quot;&gt;{this.props.noContacts}&lt;/span&gt;
+              &lt;/h1&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default Header;</code></pre>
+<p>Add a story to <code>stories/index.js</code> for  this Header component:</p>
+<pre><code>  . . . . other imports . . . . .  
+import Header from &#39;../src/components/header/&#39;
+
+storiesOf(&quot;Contact List App/Header&quot;, module).add(&quot;default&quot;, () =&gt; (
+  &lt;Header noContacts={10} /&gt;
+));</code></pre>
+<p>Now start the storybook server and check the component is rendering as required:</p>
+<pre><code>$ npx start-storybook -p 9001 -c .storybook/</code></pre>
+<p>In the browser navigate to <a href="http://localhost:9001">http://localhost:9001</a></p>
+<p><img src="./img/headerStory.png" alt=""></p>
+<p>On completion, in the terminal window, from the  <code>twoApps/contactlist</code> folder, type the following commands:</p>
+<pre><code>     $ git add -A
+     $ git commit -m &quot;Header component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>Contact List App (Contd.).</h2>
+<h3>FilterControls component.</h3>
+<p>In <code>src/components/filterControls/index.js</code> add the following code:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import &quot;./filterControls.css&quot;
+
+export default class FilterControls extends Component {
+  render() {
+    return (
+      &lt;div className=&quot;container-fluid&quot;&gt;
+        &lt;div className=&quot;row bg-warning&quot;&gt;
+          &lt;div className=&quot;col-md-12&quot;&gt;
+            &lt;h4&gt;
+              &lt;span&gt;Filter &lt;/span&gt;
+              &lt;input type=&quot;text&quot; placeholder=&quot;Name Search&quot; /&gt;
+              &lt;span&gt; Gender: &lt;/span&gt;
+              &lt;select id=&quot;gender&quot;&gt;
+                &lt;option value=&quot;all&quot;&gt;All&lt;/option&gt;
+                &lt;option value=&quot;male&quot;&gt;Male&lt;/option&gt;
+                &lt;option value=&quot;female&quot;&gt;Female&lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/h4&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}</code></pre>
+<p>A small amount of custom CSS is required. In <code>src/components/filterControls/filterControls.css</code> add the following code:</p>
+<pre><code>h4 {
+  padding-top: 5px;
+}</code></pre>
+<p>Add a story to <code>stories/index.js</code> for  this component:</p>
+<pre><code>. . . . other imports . . . . .  
+import FilterControls from &#39;../src/components/filterControls/&#39;
+
+storiesOf(&quot;Contact List App/Header&quot;, module).add(&quot;default&quot;, () =&gt; (
+    &lt;Header noContacts={10} /&gt;
+));
+// NEW STORY
+storiesOf(&quot;Contact List App/Filter Controls&quot;, module).add(&quot;default&quot;, () =&gt; (
+  &lt;FilterControls /&gt;
+));</code></pre>
+<p>Check the rendering of the component in Storybook.</p>
+<p>On completion, in the terminal window, from the  <code>twoApps/contactlist</code> folder, type the following commands:</p>
+<pre><code>     $ git add -A
+     $ git commit -m &quot;FilterControls component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Contact component.</h3>
+<p>Next is the Contact component. The icons it requires will be provided by the <a href="https://fontawesome.com/">Font Awesome library</a>. The required third-party JS modules are already installed - see dependencies section of <code>package.json</code>.</p>
+<p>Create <code>src/fontawesome.js</code> and paste in this code:</p>
+<pre><code>import { library } from &quot;@fortawesome/fontawesome-svg-core&quot;;
+import { faEnvelope, faPhone } from &quot;@fortawesome/free-solid-svg-icons&quot;;
+
+library.add(
+  faEnvelope, 
+  faPhone
+  );</code></pre>
+<p>We are creating a library object and populating it with the icons required - more will be added in a later lab. A component that displays an icon(s) simply imports the above file and can access the library using a special third-party component - see below. </p>
+<p>In <code>src/components/contact/index.js</code> add the following code:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import &quot;./contact.css&quot;;
+import &quot;../../fontawesome&quot;;
+import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
+
+class Contact extends Component {
+  render() {
+    return (
+      &lt;div className=&quot;col-sm-3&quot;&gt;
+        &lt;div className=&quot;card&quot;&gt;
+          &lt;img
+            className=&quot;card-img-tag center &quot;
+            alt={this.props.contact.name}
+            src={this.props.contact.picture.thumbnail}
+          /&gt;
+          &lt;div className=&quot;card-body&quot;&gt;
+            &lt;h5 className=&quot;card-title &quot;&gt;
+              {`${this.props.contact.name.first} ${
+                this.props.contact.name.last
+              }`}
+            &lt;/h5&gt;
+            &lt;p key=&quot;email&quot;&gt;
+              &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;envelope&quot;]} /&gt;
+              &lt;span&gt; {this.props.contact.email}&lt;/span&gt;
+            &lt;/p&gt;
+            &lt;p key=&quot;phone&quot;&gt;
+              &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;phone&quot;]} /&gt;
+              &lt;span&gt; {this.props.contact.phone} &lt;/span&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div className=&quot;card-footer&quot;&gt;
+            &lt;div
+              className=&quot;btn-group d-flex btn-group-justified&quot;
+              role=&quot;group&quot;
+              aria-label=&quot;...&quot;
+            &gt;
+              &lt;button type=&quot;button&quot; className={&quot;btn btn-default w-100&quot;}&gt;
+                {&quot; Edit &quot;}
+              &lt;/button&gt;
+              &lt;button type=&quot;button&quot; className={&quot;btn btn-danger w-100&quot;}&gt;
+                {&quot;Delete&quot;}
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default Contact;</code></pre>
+<p>This code references a local profile image which was added to the public folder for your convenience - see <code>public/profile.png</code>. We need to restart Storybook, this time specifying where it should source any images/resources:</p>
+<pre><code>  $ npx start-storybook -p 9001 -c .storybook/ -s ./public/</code></pre>
+<p>In <code>src/components/contact/contact.css</code> add the following code:</p>
+<pre><code>.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+.card-body  {
+    word-break:break-all
+  }</code></pre>
+<p>Add a sample contact and story to <code>stories/index.js</code>t:</p>
+<pre><code>. . . . other imports . . . . .  
+import Contact from &#39;../src/components/contact/&#39;
+
+const sample = {
+  name: {first:&#39;Joe&#39;, last:&#39;Bloggs&#39;},
+  email: &#39;j.bloggs@example.com&#39;,
+  phone: &#39;012-3456789&#39;,
+  picture: {thumbnail: &#39;./profile.png&#39;}
+}
+
+  . . . . other stories . . . .  
+storiesOf(&quot;Contact List App/Contact&quot;, module).add(&quot;default&quot;, () =&gt; ( 
+  &lt;Contact contact={sample}/&gt;
+));</code></pre>
+<p>Check the rendering of the component in Storybook.</p>
+<p><img src="./img/contactStory.png" alt=""></p>
+<p>On completion, in the terminal window, from the  <code>twoApps/contactlist</code> folder, type the following commands:</p>
+<pre><code>     $ git add -A
+     $ git commit -m &quot;Contact component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h2>Contact List App (Contd.).</h2>
+<h3>ContactList component.</h3>
+<p>Finally we have the contact list component. In <code>src/components/contactList/index.js</code> add the following code:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import Contact from &quot;../contact/&quot;;
+import &#39;./contactList.css&#39;;
+
+export default class ContactList extends Component {
+  render() {
+    const contactCards = this.props.contacts.map(c =&gt; (
+      &lt;Contact key={c.phone} contact={c} /&gt;
+    ));
+    return (
+      &lt;div className=&quot;container-fluid contacts bg-info&quot;&gt;
+        &lt;div className=&quot;row&quot;&gt;{contactCards}&lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}</code></pre>
+<p>In <code>src/components/contactList/contactList.css</code> add the following code:</p>
+<pre><code>.contacts {
+    padding: 10px;
+    margin-top: 0px;
+}</code></pre>
+<p>Add a story to <code>stories/index.js</code>t:</p>
+<pre><code>. . . . other imports . . . . .  
+import ContactList from &#39;../src/components/contactList/&#39;
+
+  . . . . other stories . . . .  
+storiesOf(&quot;Contact List App/Contact List&quot;, module).add(&quot;default&quot;, () =&gt; { 
+  const samples = [sample, sample, sample, sample, sample]
+  return &lt;ContactList contacts={samples}/&gt;
+});</code></pre>
+<p>Confirm the component is rendering correctly.</p>
+<p>On completion, in the terminal window, from the  <code>twoApps/contactlist</code> folder, type the following commands:</p>
+<pre><code>     $ git add -A
+     $ git commit -m &quot;ContactList component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="06">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Assemble the App.</h3>
+<p>We now have all the components developed. It&#39;s time to assemble them in to an app. Stop the Storybook server and start the create-react-app development server:</p>
+<pre><code>  $ npm start</code></pre>
+<p> Replace the entire content of <code>src/App.js</code> with the following:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import Header from &quot;./components/header/&quot;;
+import ContactList from &quot;./components/contactList/&quot;;
+import FilterControls from &quot;./components/filterControls/&quot;;
+
+class App extends Component {
+  render() {
+    const sample = {
+      name: { first: &quot;Joe&quot;, last: &quot;Bloggs&quot; },
+      email: &quot;j.bloggs@example.com&quot;,
+      phone: &quot;012-3456789&quot;,
+      picture: { thumbnail: &quot;./profile.png&quot; }
+    };
+
+    const contacts = [sample, sample, sample, sample, sample];
+
+    return (
+      &lt;div className=&quot;jumbotron&quot;&gt;
+        &lt;Header noContacts={10} /&gt;
+        &lt;FilterControls /&gt;
+        &lt;ContactList contacts={contacts} /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default App;</code></pre>
+<p>In <code>src/index.js</code> add a reference to the Bootstrap CSS library at the top:</p>
+<pre><code>import &quot;../node_modules/bootstrap/dist/css/bootstrap.css&quot;;</code></pre>
+<p>The browser should now be rendering a static version of the entire app. </p>
+<p>Their is one small bug. The badge in the header should show the number of contacts being displayed (this will change dynamically in a later lab) rather than hardcoded to a fixed number. <strong>You are required</strong> to modify the code to achieve this. The result should look as follows:</p>
+<p><img src="./img/contactsStatic.png" alt=""></p>
+<p>On completion, in the terminal window, from the  <code>twoApps/contactlist</code> folder, type the following commands:</p>
+<pre><code>     $ git add -A
+     $ git commit -m &quot;Static version completed&quot;</code></pre>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>

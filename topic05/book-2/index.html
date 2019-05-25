@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  E2E testing.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab-Routing-2">
+          Lab-Routing-2
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab-Routing-2">
+            <h1>Routing.</h1>
+<p>In this lab we add <strong>routing</strong> to the Hacker News app.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>When the user clicks the &#39;Comments&#39; link beside a news item the app should navigate to a new view that allow users write comments about that post. The illustration below shows an example of this new view:  </p>
+<p><img src="./img/comments.png" alt=""></p>
+<p>The URL for the new view will be parameterized: </p>
+<blockquote>
+<p>&#39;<a href="http://localhost:3000/posts/:post_id">http://localhost:3000/posts/:post_id</a>&#39;, where :post_id will be the news post&#39;s id in the data store.</p>
+</blockquote>
+<p>A comment&#39;s properties include author, upvote count, the comment text and an id. A news item&#39;s comments will be stored in an array, nested inside the news object, for example:</p>
+<pre><code>{ 
+    id: 2,
+    title : &#39;The button that is not.&#39;,
+    link : &#39;http://blog.nuclearsecrecy.com/2014/12/15/button-isnt/&#39;,
+    username : &#39;notme&#39;,
+    comments : [
+        {
+            id: 1,
+            author: &#39;Joe Bloggs&#39;,
+            comment: &#39;I agree with .....&#39;,
+            upvotes: 5
+        },
+        {               {
+            id: 2,
+            author: &#39;Jane Smith&#39;,
+            comment: &#39;On the other hand .....&#39;,
+            upvotes: 2
+        }
+    ],
+    upvotes : 12
+}</code></pre>
+<p>In <code>hackerNews/src</code> create the file/folder structure shown below:</p>
+<p><img src="./img/folders.png" alt=""></p>
+<p>Given the similarities between this page and the main page (web form, upvoting), their is not a need to step through its development in such small steps.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>Hacker News.</h2>
+<h3>The components.</h3>
+<p>In <code>components/commentForm/index.js</code> copy the following code:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+
+export default class Form extends Component {
+  state = { comment: &quot;&quot;, name: &quot;&quot; };
+
+  handleCommentChange = e =&gt; {
+    this.setState({ comment: e.target.value });
+  };
+
+  handleNameChange = e =&gt; {
+    this.setState({ name: e.target.value });
+  };
+
+  onSubmit = e =&gt; {
+    e.preventDefault();
+    let comment = this.state.comment.trim();
+    let name = this.state.name.trim();
+    if (!comment) {
+      return;
+    }
+    this.props.addCommentHandler(comment, name);
+    this.setState({ comment: &quot;&quot;, name: &quot;&quot; });
+  };
+
+  render() {
+    return (
+      &lt;form style={{ marginTop: &quot;30px&quot; }}&gt;
+        &lt;h3&gt;Add a new comment&lt;/h3&gt;
+
+        &lt;div className=&quot;form-group&quot;&gt;
+          &lt;input
+            type=&quot;text&quot;
+            className=&quot;form-control&quot;
+            placeholder=&quot;Comment&quot;
+            value={this.state.comment}
+            onChange={this.handleCommentChange}
+          /&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;form-group&quot;&gt;
+          &lt;input
+            type=&quot;text&quot;
+            className=&quot;form-control&quot;
+            placeholder=&quot;Your name&quot;
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          /&gt;
+        &lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          className=&quot;btn btn-primary&quot;
+          onClick={this.onSubmit}
+        &gt;
+          Submit
+        &lt;/button&gt;
+      &lt;/form&gt;
+    );
+  }
+}</code></pre>
+<p>In <code>components/comment/index.js</code> copy the following code:</p>
+<pre><code>import React, { Component, Fragment } from &quot;react&quot;;
+import &quot;../../fontawesome&quot;;
+import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
+import &#39;./comment.css&#39;
+
+export default class Comment extends Component {
+  handleVote = () =&gt; {
+    this.props.upvoteHandler(this.props.comment.id);
+  };
+  render() {
+    return (
+      &lt;Fragment&gt;
+        &lt;span className=&quot; ptr&quot; onClick={this.handleVote}&gt;
+          &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;thumbs-up&quot;]} size=&quot;2x&quot; /&gt;
+        &lt;/span&gt;
+        {` ${this.props.comment.upvotes}`}
+        &lt;span className=&quot;commentitem&quot;&gt;
+          {`${this.props.comment.comment} (by ${this.props.comment.author})`}
+        &lt;/span&gt;
+        &lt;p&gt;&lt;/p&gt;
+      &lt;/Fragment&gt;
+    );
+  }
+}</code></pre>
+<p>In <code>components/comment/comment.css</code> copy the following code:</p>
+<pre><code>.ptr {
+  cursor: pointer;
+}
+.commentitem {
+    margin-left: 10px;
+  }</code></pre>
+<p>In <code>components/commentList/index.js</code> copy the following code:</p>
+<pre><code>import React, {Fragment} from &#39;react&#39;;
+import Comment from &#39;../comment&#39;;
+
+export default ( {comments, upvoteHandler} )  =&gt; {
+    let items = comments.map(
+        (comment,index) =&gt;  
+           &lt;Comment key={index} 
+                comment={comment} upvoteHandler={upvoteHandler}  /&gt;
+    )
+    return (
+        &lt;Fragment&gt;
+            {items}
+        &lt;/Fragment&gt;
+    )
+};</code></pre>
+<p>Go to the <code>twoApps/hackerNews</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;ContactPage components implemented&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Hacker News (Contd.).</h2>
+<h3>Stories.</h3>
+<p>In <code>stories/index.js</code> add stories for the components developed in the previous section::</p>
+<pre><code>..... other imports ......
+import CommentForm from &quot;../src/components/commentForm&quot;;
+import Comment from &quot;../src/components/comment&quot;;
+import CommentList from &quot;../src/components/commentList&quot;;
+
+....other stories ......
+storiesOf(&quot;Hacker App/Comment page/Comment Form&quot;, module).add(&quot;default&quot;, () =&gt; (
+  &lt;CommentForm post={post} addCommentHandler={action(&quot;comment added&quot;)} /&gt;
+));
+
+const comment = {
+  id: 1,
+  author: &quot;Joe Bloggs&quot;,
+  comment: &quot;I agree with .....&quot;,
+  upvotes: 10
+};
+
+storiesOf(&quot;Hacker App/Comment page/Comment&quot;, module).add(&quot;default&quot;, () =&gt; (
+  &lt;Comment upvoteHandler={action(&quot;upvoted&quot;)} comment={comment} /&gt;
+));
+
+storiesOf(&quot;Hacker App/Comment page/Comment list&quot;, module).add(&quot;default&quot;, () =&gt; {
+  const defaultComments = [
+    comment,
+    { ...comment, author: &quot;Jane Smith&quot;, upvotes: 3, id: 2 },
+    { ...comment, comment: &quot;On the other hand&quot;, id: 3 },
+    { ...comment, author: &quot;Jill Dwyer&quot;, upvotes: 5, id: 4 }
+  ];
+  return (
+    &lt;CommentList upvoteHandler={action(&quot;upvoted&quot;)} comments={defaultComments} /&gt;
+  );
+});</code></pre>
+<p>Check these in the Storybook UI:</p>
+<p><img src="./img/commentstories.png" alt=""></p>
+<p>From the <code>twoApps/hackerNews</code> folder, commit the work so far:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Comment Page stories&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>Hacker News (Contd.).</h2>
+<h3>Routing declaration</h3>
+<p>In <code>src/index.js</code> replace the entire content with the following (Note, it references a component yet to be developed):</p>
+<pre><code>import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+import { BrowserRouter, Route, Redirect, Switch, Link } from &quot;react-router-dom&quot;;
+import &quot;../node_modules/bootstrap/dist/css/bootstrap.css&quot;;
+import App from &quot;./App&quot;;
+import CommentPage from &quot;./components/commentPage&quot;;
+
+const Router = (props) =&gt; {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;div className=&quot;jumbotron&quot;&gt;
+        &lt;div className=&quot;container-fluid&quot;&gt;
+          &lt;div className=&quot;row&quot;&gt;
+            &lt;div className=&quot;col-md-6 offset-3&quot;&gt;
+              &lt;h1&gt;
+                &lt;Link to=&quot;/&quot;&gt;Hacker News&lt;/Link&gt;
+              &lt;/h1&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;Switch&gt;
+          &lt;Route path=&quot;/posts/:post_id&quot; component={CommentPage} /&gt;
+          &lt;Route exact path=&quot;/&quot; component={App} /&gt;
+          &lt;Redirect from=&quot;*&quot; to=&quot;/&quot; /&gt;
+        &lt;/Switch&gt;
+      &lt;/div&gt;
+    &lt;/BrowserRouter&gt;
+  );
+};
+
+ReactDOM.render(&lt;Router /&gt;, document.getElementById(&quot;root&quot;));</code></pre>
+<p>We can now assemble the components developed earlier in to a new view/page. Create <code>src/components/commentPage.js</code> and copy in the following:</p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import { withRouter } from &#39;react-router-dom&#39;;
+import _ from &#39;lodash&#39;
+import api from &#39;../dataStore/stubAPI&#39;;
+import CommentList from &#39;./commentList&#39;
+import Form from &#39;./commentForm&#39;
+
+class CommentPage extends Component {
+    addComment = (comment, name) =&gt; {
+        let pid =  this.getId()
+        api.addComment(pid,comment ,name );
+        this.setState({});
+    };
+
+    incrementUpvote = (commentId) =&gt; {
+        let pid =  this.getId()
+        api.upvoteComment(pid,commentId) ;
+        this.setState({});
+    };
+
+    getId = () =&gt; parseInt( this.props.match.params.post_id, 10);
+
+    render() {
+        let pid = this.getId()
+        let post = api.getPost(pid);
+        let line = post.link?
+            &lt;a href={post.link}&gt;{post.title} &lt;/a&gt; :
+            &lt;span&gt;{post.title} &lt;/span&gt; ;
+        let comments = _.sortBy(post.comments,
+                (comment) =&gt; - comment.upvotes
+        );
+        return (
+          &lt;div className=&quot;container&quot;&gt;
+            &lt;div className=&quot;row&quot;&gt;
+              &lt;div className=&quot;col-md-9 col-md-offset-1&quot;&gt;
+                &lt;h3&gt;{line} &lt;/h3&gt;
+                &lt;CommentList comments={comments}
+                    upvoteHandler={this.incrementUpvote } /&gt;
+                &lt;Form post={post}  addCommentHandler={this.addComment} /&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        )
+    }
+}
+
+export default withRouter(CommentPage);</code></pre>
+<p>This has no new technical features other than the use of the <em>parseInt</em> system function. While post ids are stored as integers, they are extracted from the parameterized URLs as strings. We use parseInt to convert the string to an integer.</p>
+<p>In <code>components/newsItem/index.js</code>, in the render method return statement, change the anchor tags from:</p>
+<pre><code>&lt;span&gt;
+    &lt;a href={&#39;#/posts/&#39; + this.props.post.id }&gt;Comments&lt;/a&gt;
+&lt;/span&gt;</code></pre>
+<p>to:</p>
+<pre><code>&lt;span&gt;
+  &lt;Link to={`/posts/${this.props.post.id}` }&gt;Comments&lt;/Link&gt;
+&lt;/span&gt;</code></pre>
+<p>and add an import to the same file:</p>
+<pre><code>import { Link } from &#39;react-router-dom&#39;;</code></pre>
+<p>From the <code>twoApps/hackerNews</code> folder, commit the work so far:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Comment Page integrated&quot;</code></pre>
+<p>```</p>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>

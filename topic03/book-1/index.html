@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  Thinking in React.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab-Interactive_Contacts">
+          Lab-Interactive_Contacts
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
+        <a class="item" data-tab="06">
+          06
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab-Interactive_Contacts">
+            <h1>Building React SPAs (Dynamic).</h1>
+<p>Continue the development of the Contact List SPAs by adding <strong>statefulness</strong> and making the app <strong>interactive and dynamic</strong>.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>Use the code developed in the previous week (the <code>twoApps/contactList</code> folder) as the starting point for this lab.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>Contact List App.</h2>
+<p>The objective is to allow the user edit or delete an existing contact, with the option to undo / cancel the operation, if required. The user should also be able to filter the list of contacts by name and/or gender.</p>
+<h3>Randon user Generator</h3>
+<p>In the previous lab we hard-coded a small sample contaact data set. The <a href="https://randomuser.me/">Random User web API</a> is a great utility for providing random user data sets in JSON format. For  example try this URL in a browser: <a href="https://randomuser.me/api/?results=1">https://randomuser.me/api/?results=1</a>. It returns a results set size of 1. You csn specify any desired results set  size in the request - we will use 50, arbitrarily. The API only supports HTTP GET requests.</p>
+<h3>Stub API</h3>
+<p>In production mode a SPA gets its model data from a &#39;real&#39; web API that supports full CRUD behaviour. However, during development a <strong>stub API</strong> is a common technique, either because the real API is not yet developed or to postpone integration until the SPA is complete. </p>
+<p>Create the file <code>contactlist/src/dataStore/stubAPI.js</code> and add the following code:</p>
+<pre><code>import _ from &quot;lodash&quot;;
+
+class StubAPI {
+    constructor() {
+        this.contacts = [];
+    }
+
+    find(id) {
+        let index = _.findIndex(
+        this.contacts,
+        contact =&gt; `${contact.phone}${contact.cell}` === id
+        );
+        if (index !== -1) {
+        return this.contacts[index];
+        }
+        return null;
+    }
+
+    delete(k) {
+        let elements = _.remove(this.contacts, contact =&gt; contact.phone === k);
+        return elements;
+    }
+
+    initialize(contacts) {
+        this.contacts = contacts;
+    }
+
+    getAll() {
+        return this.contacts;
+    }
+
+    update(key, email, phone) {
+        let index = _.findIndex(this.contacts, contact =&gt; contact.phone === key);
+        if (index !== -1) {
+        this.contacts[index].phone = phone;
+        this.contacts[index].email = email;
+        return true;
+        }
+        return false;
+    }
+}
+
+export default new StubAPI();</code></pre>
+<p>This code uses the <em>lodash</em> utility package - see dependencies section of <code>package.json</code>. 
+Start the development server from the <code>contactlist</code> folder:</p>
+<pre><code>$ npm start</code></pre>
+<p>Our app will request a data set from the remote web API and store it in the stub API - later we will be able to modify this data locally via our app&#39;s UI. In <code>src/App.js</code> replace the entire content of the file with the following: </p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import Header from &quot;./components/header/&quot;;
+import ContactList from &quot;./components/contactList/&quot;;
+import FilterControls from &quot;./components/filterControls/&quot;;
+import request from &quot;superagent&quot;;
+import api from &quot;./dataStore/stubAPI&quot;; // NEW
+
+class App extends Component {
+    componentDidMount() {
+        request.get(&quot;https://randomuser.me/api/?results=50&quot;).end((error, res) =&gt; {
+        if (res) {
+            let { results: contacts } = JSON.parse(res.text);
+            api.initialize(contacts);
+            this.setState({});
+        } else {
+            console.log(error);
+        }
+        });
+    }
+    render() {
+        let contacts = api.getAll();
+        return (
+        &lt;div className=&quot;jumbotron&quot;&gt;
+            &lt;Header noContacts={contacts.length} /&gt;
+            &lt;FilterControls /&gt;
+            &lt;ContactList contacts={contacts} /&gt;
+        &lt;/div&gt;
+        );
+    }
+}
+
+export default App;</code></pre>
+<p>The app should now render in the browser similar to below. Note, the user generator API returns a different data set on every request - it&#39;s random!</p>
+<p><img src="./img/contactsUI.png" alt=""></p>
+<p>From the <code>twoapps/contactlist</code> folder update the local Git repo:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Added stub API&quot;</code></pre>
+<p>Restart the development server. </p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Contact List App (Contd.).</h2>
+<h3>UI state.</h3>
+<p>In React terms, a common source of UI state is user input controls, including:</p>
+<ul>
+<li>Input Text field.</li>
+<li>Drop-down menu.</li>
+<li>Radio button or checkbox.</li>
+</ul>
+<p>An analysis of this app&#39;s behavior requirements yields the following UI state breakdown:</p>
+<ol>
+<li>Contact details - A contact&#39;s properties (email, phone) are editable and therefore should be stored as UI state.</li>
+<li>Contact status - A contact&#39;s &#39;status&#39; changes when the user clicks the Edit or Delete button. The change is reflected in the background color and the purpose of its two buttons. Three status types are possible: Normal (default); Edit (background color is blue and the buttons represent Cancel and Save operations); and Delete (background color is yellow and the buttons represent Cancel and Confirm operations). As a status change results from user interaction, it maps to React&#39;s <em>component state</em> concept.</li>
+<li>Filtering parameters - The content of the search text box and Gender drop-dowm menu selection are UI state.</li>
+</ol>
+<h3>Stateful components.</h3>
+<p>Which components should manage the app&#39;s UI state? </p>
+<p>Only the Contact component is concerned about the status attribute. Also, no other component needs to be re-rendered while the user is editing/updating a contact. In <code>src/components/contact/index.js</code>, update the Contact component as shown below:</p>
+<pre><code>class Contact extends Component {
+state = {
+    status: &quot;&quot;,
+    email: this.props.contact.email,
+    phone: this.props.contact.phone,
+    previousDetails: {
+    email: this.props.contact.email,
+    phone: this.props.contact.phone
+    }
+};
+render() { . . . as before . . .}
+}</code></pre>
+<p>Notes:</p>
+<ol>
+<li>For simplicity, the normal (default) contact status will be represented by an empty string. The values &#39;edit&#39; and &#39;del&#39; will be used for the other status options - see later.</li>
+<li>The initial values for a contact&#39;s details are passed in as props. While props are not normally stored as state, it is necessary here due to the edit feature.</li>
+<li>The previousDetails nested object is necessary to support the cancel option when in edit mode - we need to reset the contact&#39;s properties back to pre-edit values.</li>
+</ol>
+<p>The filtering inputs are part of the FilterControls component, however, the App component uses the data to compute the matching set of contacts. Add the state to <code>src/App.js</code>:</p>
+<pre><code>class App extends Component {
+    state = { search: &quot;&quot;, gender: &quot;all&quot; };
+    componentDidMount() { ...... as before ..... 
+}</code></pre>
+<h4>Externalize configuration.</h4>
+<p>The attributes (color, label) of the buttons associated with a contact could be considered <strong>configuration data</strong>. It is good practice to separate configuration from logic, thus making an app easier to reconfigure. Create the file  <code>src/config/buttonsConfig.js</code> and add the following code:</p>
+<pre><code>const buttons = {
+    normal: {
+        leftButtonVal: &quot;Edit&quot;,
+        rightButtonVal: &quot;Delete&quot;,
+        leftButtonColor: &quot;btn-default&quot;,
+        rightButtonColor: &quot;btn-danger&quot;
+    },
+    delete: {
+        leftButtonVal: &quot;Cancel&quot;,
+        rightButtonVal: &quot;Confirm&quot;,
+        leftButtonColor: &quot;btn-light&quot;,
+        rightButtonColor: &quot;btn-danger&quot;
+    },
+    edit: {
+        leftButtonVal: &quot;Save&quot;,
+        rightButtonVal: &quot;Cancel&quot;,
+        leftButtonColor: &quot;btn-danger&quot;,
+        rightButtonColor: &quot;btn-light&quot;
+    }
+};
+export default buttons;</code></pre>
+<p>This configuration data is used in the next section.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Edit contact.</h3>
+<p>We will start by adding support for the Edit feature. The code required will involve the following:</p>
+<ol>
+<li>Change the Contact component&#39;s status to &#39;edit&#39;. </li>
+<li>As the user is editing the input fields, keep the contact details stored in the state object in sync with the text input fields. React&#39;s <em>onChange</em> event will facilitate synchronization.</li>
+<li>If the user cancels an edit operation then the contact&#39;s details must be reset.</li>
+</ol>
+<p>Significant changes are required to <code>components/contact/index.js</code>. Replace the entire content with the following:</p>
+<pre><code>import React, { Component, Fragment } from &quot;react&quot;;
+import &quot;./contact.css&quot;;
+import &quot;../../fontawesome&quot;;
+import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
+import buttons from &quot;../../config/buttonsConfig&quot;;
+
+class Contact extends Component {
+  state = {
+    status: &quot;&quot;,
+    email: this.props.contact.email,
+    phone: this.props.contact.phone,
+    previousDetails: {
+      email: this.props.contact.email,
+      phone: this.props.contact.phone
+    }
+  };
+  handleEdit = () =&gt; this.setState({ status: &quot;edit&quot; });
+  handleCancel = () =&gt; {
+    let { email, phone } = this.state.previousDetails;
+    this.setState({ status: &quot;&quot;, email, phone });
+  };
+  handleEmailChange = e =&gt; this.setState({ email: e.target.value });
+  handlePhoneChange = e =&gt; this.setState({ phone: e.target.value });
+  render() {
+    let activeButtons = buttons.normal;
+    let leftButtonHandler = this.handleEdit;
+    let rightButtonHandler = this.handleDelete;
+    let cardColor = &quot;bg-white&quot;;
+    if (this.state.status === &quot;edit&quot;) {
+      cardColor = &quot;bg-primary&quot;;
+      activeButtons = buttons.edit;
+      leftButtonHandler = this.handleSave;
+      rightButtonHandler = this.handleCancel;
+    }
+    return (
+      &lt;div className=&quot;col-sm-3&quot;&gt;
+        &lt;div className={`card  ${cardColor}`}&gt;
+          &lt;img
+            className=&quot;card-img-tag center &quot;
+            alt={this.props.contact.name}
+            src={this.props.contact.picture.thumbnail}
+          /&gt;
+          &lt;div className=&quot;card-body&quot;&gt;
+            &lt;h5 className=&quot;card-title &quot;&gt;
+              {`${this.props.contact.name.first} ${
+                this.props.contact.name.last
+              }`}
+            &lt;/h5&gt;
+            {this.state.status === &quot;edit&quot; ? (
+              &lt;Fragment&gt;
+                &lt;p&gt;
+                  &lt;input
+                    type=&quot;text&quot;
+                    className=&quot;form-control&quot;
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
+                  /&gt;
+                &lt;/p&gt;
+                &lt;p&gt;
+                  &lt;input
+                    type=&quot;text&quot;
+                    className=&quot;form-control&quot;
+                    value={this.state.phone}
+                    onChange={this.handlePhoneChange}
+                  /&gt;
+                &lt;/p&gt;
+              &lt;/Fragment&gt;
+            ) : (
+              &lt;Fragment&gt;
+                &lt;p&gt;
+                  &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;envelope&quot;]} /&gt;
+                  &lt;span&gt; {this.props.contact.email}&lt;/span&gt;
+                &lt;/p&gt;
+                &lt;p&gt;
+                  &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;phone&quot;]} /&gt;
+                  &lt;span&gt; {this.props.contact.phone} &lt;/span&gt;
+                &lt;/p&gt;
+              &lt;/Fragment&gt;
+            )}
+          &lt;/div&gt;
+          &lt;div className=&quot;card-footer&quot;&gt;
+            &lt;div
+              className=&quot;btn-group d-flex btn-group-justified&quot;
+              role=&quot;group&quot;
+              aria-label=&quot;...&quot;
+            &gt;
+              &lt;button
+                type=&quot;button&quot;
+                className={&quot;btn w-100 &quot; + activeButtons.leftButtonColor}
+                onClick={leftButtonHandler}
+              &gt;
+                {activeButtons.leftButtonVal}
+              &lt;/button&gt;
+              &lt;button
+                type=&quot;button&quot;
+                className={&quot;btn w-100 &quot; + activeButtons.rightButtonColor}
+                onClick={rightButtonHandler}
+              &gt;
+                {activeButtons.rightButtonVal}
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+export default Contact;</code></pre>
+<p>Notes:</p>
+<ol>
+<li>ES6 arrow functions have &#39;this&#39; bound to the containing object. </li>
+<li>In ES6, for single-line anonymous functions the curly-braces are optional and the return keyword is omitted.</li>
+<li>In edit mode, the Contact email and phone fields change from non-editable text to input fields. The JavaScript ternary operator (?:) is used inside the above JSX to implement the conditional switch. The JSX (and ultimately HTML) is being <strong>dynamically computed</strong> based on the status property of the state object.</li>
+<li>We use &#39;this.state&#39; instead of &#39;this.props.contact&#39; to set the value of an input fields. This ensures the state object is in sync with the current input as it is being entered.    </li>
+<li>The save changes feature is not implemented, yet.</li>
+</ol>
+<p>To test the above code, start the Storybook server, select the Contact component and click the Edit button. </p>
+<p><img src="./img/edit.png" alt=""></p>
+<p>The contact&#39;s details are now editable. Change some values (say, the email) and click Cancel to reset it.</p>
+<p>To get Save working, implement the <em>handleSave</em>, as follows (<code>components/contact/index.js</code>):</p>
+<pre><code>class Contact extends Component {
+    . . . existing code . . . 
+    handleSave = e =&gt; {
+        e.preventDefault();
+        let updatedEmail = this.state.email.trim();
+        let updatedPhone = this.state.phone.trim();
+        if (!updatedEmail || !updatedPhone) {
+        return;
+        }
+        let { email, phone } = this.state;
+        this.setState({ status: &quot;&quot;, previousDetails: { email, phone } });
+        api.update(this.state.previousDetails.phone, updatedEmail, updatedPhone);
+    };                            
+    handleCancel = (e) =&gt; { . . .  as before . . . }</code></pre>
+<p>Also, add this import at the top:</p>
+<pre><code>import api from &#39;../../dataStore/stubAPI&#39;</code></pre>
+<p>We can only prove this code in the app (rather than Storybook) as we are interacting with the StubAPI. Start the development server:</p>
+<pre><code>$ npm start</code></pre>
+<p>Now edit a contact and click the Save button.</p>
+<p>Commit these changes to git:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Edit feature implemented&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h2>Contact List App (Contd.).</h2>
+<h3>The Delete feature.</h3>
+<p>A delete is initiated in a Contact component, however, it effects the Header component badge and must also be communicated to the Stub API. The App component should coordinate this logic. The elements of the solution includes:</p>
+<ul>
+<li>A function in App to communicate with the API and perform re-rendering of the Header.</li>
+<li>Pass a reference to above function to the Contact components. </li>
+<li>Contact component invokes the function when required. </li>
+</ul>
+<p>In <code>src/App.js</code>, make the following changes:</p>
+<pre><code>class App extends Component {
+    ...... other code ......
+    deleteContact = (key) =&gt; {
+        api.delete(key); 
+        this.setState({});                          
+    };
+    render() {
+        . . . . as before . .  .
+        return (
+            . . . as before . . . 
+            &lt;ContactList contacts={contacts} 
+                    deleteHandler={this.deleteContact} /&gt;
+            . . . as before . . . 
+    );
+}
+}
+      export default App;</code></pre>
+<p>In <code>components/contactList/index.js</code> make the following changes:</p>
+<pre><code>export default class ContactList extends Component {
+    render() {
+    const contactCards = this.props.contacts.map(c =&gt; (
+    &lt;Contact
+        key={c.phone}
+        contact={c}
+        deleteHandler={this.props.deleteHandler}
+    /&gt;
+    )); 
+    return (
+        . . . . as before . . . .
+        ) ;
+    }
+}</code></pre>
+<p>In <code>components/contact/index.js</code> make the additions shown:</p>
+<pre><code>class Contact extends Component {
+    . . . . other handlers . . . . 
+    handleDelete = () =&gt;  this.setState({ status : &#39;del&#39;} );
+    handleConfirm = (e) =&gt; {
+    e.preventDefault();
+    this.props.deleteHandler(this.state.phone);
+    };
+    render() { 
+        . . . . existing statements . . . . . 
+        if (this.state.status === &#39;edit&#39; ) {
+            . . . as before . . . 
+        } else if (this.state.status === &#39;del&#39; ) {
+        cardColor = &quot;bg-warning&quot;;
+        activeButtons = buttons.delete;
+        leftButtonHandler = this.handleCancel;
+        rightButtonHandler = this.handleConfirm;
+    }
+    return ( . . . as before . . . )   
+}
+export default Contact;</code></pre>
+<p>Note, for convenience we are using a contact&#39;s phone number as a unique identifier. We will test this code in the next section.</p>
+<p>Commit these changes to git:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Delete feature implemented&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Storybook addons.</h3>
+<p>The Contact component above expects a function prop. Storybook can accommodate this by providing a stub replacement, using an &#39;addon&#39; to implement the stub.  Add the following line to the configuration file <code>.storybook/addons.js</code>:</p>
+<pre><code>import &#39;@storybook/addon-actions/register&#39;;</code></pre>
+<p> [See devDependencies section in <code>package.json</code>.]</p>
+<p> In <code>stories/index.js</code> add a new import at the top:</p>
+<pre><code>import { action } from &#39;@storybook/addon-actions&#39;;</code></pre>
+<p>and update the related story:</p>
+<pre><code>storiesOf(&quot;Contact List App/Contact&quot;, module).add(&quot;default&quot;, () =&gt; ( 
+        &lt;Contact contact={sample} deleteHandler={action(&#39;Delete confirmed&#39;) }/&gt;
+));</code></pre>
+<p>We are passing a dummy function (or action ) to the component. The dummy will simply display a message when invoked.  Start the Storybook server, select the Contact component, click the Delete button, followed by the Confirm:</p>
+<p><img src="./img/delete.png" alt=""></p>
+<p>Stop Storybook and start the CRA development server (npm start). Delete a contact and notice the Header badge is decremented. When a delete is confirmed, the Contact component calls the App component which in turn calls the stub API to delete the record fron the contacts array. App then calls <em>setState()</em> which causes the <em>render()</em> method to execute. In render we call <em>api.getAll()</em> which returns the updated array and renders it.</p>
+<p>Commit these changes to git:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Updated Storybook for Delete&quot;</code></pre>
+<p>[ The re-rendering by the App component does lead to some unnecessary re-rendering by the individual Contact components. We will remove this unnecessary execution later.]</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="06">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Filtering,</h3>
+<p>The filtering feature is implemented using the inverse dsta flow pattern because the related UI  state is contained in the App component while the FilterControls component manage the actual data entry. The elements of the implementation are: </p>
+<ul>
+<li>App declares a function to update the state object.</li>
+<li>App passes a reference to the function to FilterControls using the props mechanism.</li>
+<li>FilterControls calls the function when the user interacts with the input controls.</li>
+</ul>
+<p>Make the following changes to <code>src/App.js</code>:</p>
+<pre><code>. . . . other imports . . . 
+import _ from &quot;lodash&quot;;
+
+class App extends Component {
+    state = { . . . as before . . . };
+
+    handleChange = (type, value) =&gt; {
+        type === &quot;name&quot;
+        ? this.setState({ search: value })
+        : this.setState({ gender: value });
+    };
+    . . . . other methods . . . 
+    render() {
+        let contacts = api.getAll();
+        let filteredContacts = contacts.filter(c =&gt; {
+        const name = `${c.name.first} ${c.name.last}`;
+        return name.toLowerCase().search(this.state.search.toLowerCase()) !== -1;
+        });
+        filteredContacts =
+        this.state.gender === &quot;all&quot;
+            ? filteredContacts
+            : filteredContacts.filter(c =&gt; c.gender === this.state.gender);
+        let sortedContacts = _.sortBy(filteredContacts, c =&gt; c.name.last);
+
+        return (
+        &lt;div className=&quot;jumbotron&quot;&gt;
+            &lt;Header noContacts={sortedContacts.length} /&gt;
+            &lt;FilterControls
+                onUserInput={this.handleChange}
+            /&gt;
+            &lt;ContactList contacts={sortedContacts}
+            deleteHandler={this.deleteContact}  /&gt;
+        &lt;/div&gt;
+        );
+    }
+}</code></pre>
+<p>In <code>src/components/filterControls/index.js</code> replace the entire content with the following:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import &quot;./filterControls.css&quot;
+
+export default class FilterControls extends Component {
+    handleChange = (e, type, value) =&gt; {
+        e.preventDefault();
+        this.props.onUserInput(type, value);
+    };
+    handleTextChange = e =&gt; {
+        this.handleChange(e, &quot;name&quot;, e.target.value);
+    };
+    handleGenderChange = e =&gt; {
+        this.handleChange(e, &quot;gender&quot;, e.target.value);
+    };
+    render() {
+        return (
+        &lt;div className=&quot;container-fluid&quot;&gt;
+            &lt;div className=&quot;row bg-warning&quot;&gt;
+            &lt;div className=&quot;col-md-12&quot;&gt;
+                &lt;h4&gt;
+                &lt;span&gt;Filter &lt;/span&gt;
+                &lt;input
+                    type=&quot;text&quot;
+                    placeholder=&quot;Name Search&quot;
+                    onChange={this.handleTextChange}
+                /&gt;
+                &lt;span&gt; Gender: &lt;/span&gt;
+                &lt;select
+                    id=&quot;gender&quot;
+                    onChange={this.handleGenderChange}
+                &gt;
+                    &lt;option value=&quot;all&quot;&gt;All&lt;/option&gt;
+                    &lt;option value=&quot;male&quot;&gt;Male&lt;/option&gt;
+                    &lt;option value=&quot;female&quot;&gt;Female&lt;/option&gt;
+                &lt;/select&gt;
+                &lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        );
+    }
+
+}</code></pre>
+<p>We can only test this in any significant way in the app rather than Storybook. Start the development server and try the filtering</p>
+<p><img src="./img/filter.png" alt=""></p>
+<p> For completeness we should update the related story in <code>stories/index.js</code>:</p>
+<pre><code>storiesOf(&quot;Contact List App/Filter Controls&quot;, module).add(&quot;default&quot;, () =&gt; (
+    &lt;FilterControls onUserInput={action(&#39;Search criteria changes&#39;) }/&gt;
+));</code></pre>
+<p>On completion, commit the work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Filter contacts completed&quot;</code></pre>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  Thinking in React.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab-Interactive_Hacker">
+          Lab-Interactive_Hacker
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
+        <a class="item" data-tab="06">
+          06
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab-Interactive_Hacker">
+            <h1>Building React SPAs (Dynamic).</h1>
+<p>Continue the development of the Hacker News SPAs by adding <strong>statefulness</strong> and making it <strong>interactive and dynamic</strong>.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>Use the code developed in the previous week (the <code>twoApps/hackerNews</code> folder) as the starting point for this lab.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>Hacker News.</h2>
+<h3>Stub API</h3>
+<p>Again we will use a stub API as the model data source. Create the file <code>hackerNews/src/dataStore/stubAPI.js</code> and paste in the following code:</p>
+<pre><code>import _ from &quot;lodash&quot;;
+
+class StubAPI {
+    constructor() {
+        this.posts = [
+        {
+            id: 1,
+            title: &quot;Why You Can No Longer Get Lost in the Crowd&quot;,
+            link: &quot;https://www.nytimes.com/2019/04/17/opinion/data-privacy.html&quot;,
+            author: &quot;Woodrow Hartzog&quot;,
+            comments: [],
+            upvotes: 10
+        },
+        {
+            id: 2,
+            title: &quot;Samsung&#39;s folding phone breaks for reviewers&quot;,
+            link: &quot;https://www.bbc.com/news/technology-47970788&quot;,
+            author: &quot;Dave Lee&quot;,
+            comments: [],
+            upvotes: 14
+        },
+        {
+            id: 3,
+            title:
+            &quot;Microsoft turned down facial-recognition sales on human rights concerns&quot;,
+            link: null,
+            author: &quot;Joseph Mennn&quot;,
+            comments: [],
+            upvotes: 12
+        },
+        {
+            id: 4,
+            title:
+            &quot;Follow-up: I found two identical packs of Skittles, among 468 packs with a total of 27,740 Skittles&quot;,
+            link: &quot;https://possiblywrong.wordpress.com/&quot;,
+            author: &quot;unknown&quot;,
+            comments: [],
+            upvotes: 2
+        },
+        {
+            id: 5,
+            title: &quot;THE COMING DESERT&quot;,
+            link:
+            &quot;https://newleftreview.org/issues/II97/articles/mike-davis-the-coming-desert&quot;,
+            author: &quot;MIKE DAVIS&quot;,
+            comments: [],
+            upvotes: 8
+        },
+        {
+            id: 6,
+            title: &quot;Sleep myths &#39;damaging your health&#39;&quot;,
+            link: &quot;https://www.bbc.com/news/health-47937405&quot;,
+            author: &quot;James Gallagher&quot;,
+            comments: [],
+            upvotes: 10
+        },
+        {
+            id: 7,
+            title: &quot;Planet’s ocean-plastics problem detailed in 60-year data set&quot;,
+            link: &quot;https://www.nature.com/articles/d41586-019-01252-0&quot;,
+            author: &quot;Matthew Warren&quot;,
+            comments: [],
+            upvotes: 20
+        }
+        ];
+    }
+
+    getAll() {
+        return this.posts;
+    }
+
+    add(title, author, link) {
+        let id = 1;
+        let last = _.last(this.posts);
+        if (last) {
+        id = last.id + 1;
+        }
+        let len = this.posts.length;
+        let newLen = this.posts.push({
+        id,
+        title,
+        author,
+        link,
+        comments: [],
+        upvotes: 0
+        });
+        return newLen &gt; len;
+    }
+
+    upvote(id) {
+        let index = _.findIndex(this.posts, post =&gt; post.id === id);
+        if (index !== -1) {
+        this.posts[index].upvotes += 1;
+        return true;
+        }
+        return false;
+    }
+
+    getPost(id) {
+        let index = _.findIndex(this.posts, post =&gt; post.id === id);
+        let result = index !== -1 ? this.posts[index] : null;
+        return result;
+    }
+
+    addComment(postId, c, n) {
+        let post = this.getPost(postId);
+        let id = 1;
+        let last = _.last(post.comments);
+        if (last) {
+        id = last.id + 1;
+        }
+        post.comments.push({ id: id, comment: c, author: n, upvotes: 0 });
+    }
+
+    upvoteComment(postId, commentId) {
+        let post = this.getPost(postId);
+        let index = _.findIndex(post.comments, c =&gt; c.id === commentId);
+        if (index !== -1) {
+        post.comments[index].upvotes += 1;
+        }
+    }
+}
+
+export default new StubAPI();</code></pre>
+<p>Note: An <strong>id</strong> has been added to each post (news item) object for convenience. The add method of the API computes the id of a new post by simply incrementing the id of the last one in the array. The upvote method is passed the id of the post to be upvoted.</p>
+<p>In <code>src/App.js</code> completely replace the current code with the following:</p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import NewsList from &#39;./components/newsList/&#39;;
+import Form from &#39;./components/newsForm/&#39;;
+import api from &#39;./dataStore/stubAPI&#39;;
+
+export default class App extends Component {    
+    render() {
+        let posts =  api.getAll();
+        return (
+            &lt;div className=&quot;jumbotron&quot;&gt;
+            &lt;div className=&quot;container-fluid&quot;&gt;
+            &lt;div className=&quot;row&quot;&gt;
+                &lt;div className=&quot;col-md-6 offset-3&quot;&gt;
+                    &lt;h1&gt;&lt;a href=&quot;/&quot;&gt;Hacker News&lt;/a&gt;&lt;/h1&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;row&quot;&gt;
+                &lt;div className=&quot;col-md-4 &quot;&gt;
+                    &lt;Form /&gt;
+                &lt;/div&gt;
+                &lt;div className=&quot;col-md-8&quot;&gt;
+                    &lt;NewsList posts={posts} /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;    
+        &lt;/div&gt;    
+        &lt;/div&gt;    
+        );
+    }
+}</code></pre>
+<p>Start the development server (npm start). The browser should render the app as before.</p>
+<p>From the <code>twoapps/contactlist</code> folder update the local Git repo:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Added stub API&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Hacker News (Contd.).</h2>
+<h3>UI state.</h3>
+<p>The data entry fields of a web forms are always part of the containing component&#39;s state object. In <code>src/components/newsForm/index.js</code> add a state object:</p>
+<pre><code>export default class Form extends Component {
+    state = { title: &#39;&#39;, author: &#39;&#39;, link: &#39;&#39;};
+    render() {.........}
+}</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>Hacker News (Contd.).</h2>
+<h3>The Upvoting feature.</h3>
+<p>We will add the upvoting feature first. When upvoting occurs the ordering of the news items must be recomputed (descending order) and the list should be re-rendered. The event that triggers a vote occurs in the NewsItem component but the App component must be informed as it computes the ordering.</p>
+<p>In <code>src/App.js</code> make the following changes:</p>
+<pre><code>export default class App extends Component {
+    incrementUpvote = (id) =&gt; {
+        api.upvote(id) ;
+        this.setState({});
+    };
+
+    render() {
+        . . . . . . 
+        &lt;NewsList posts={posts} 
+            upvoteHandler={this.incrementUpvote} /&gt;
+        . . . . . . 
+    }</code></pre>
+<p>The incrementUpvote function is called when the user clicks the thumb-up icon of a news item. The function must be passed down the component hierarchy to NewsItem. In <code>components/newsList/index.js</code>, update the render method as follows:</p>
+<pre><code>render() {
+   let items = this.props.posts.map(
+    (post,index) =&gt; 
+        &lt;NewsItem key={index} 
+            post={post} 
+            upvoteHandler={this.props.upvoteHandler} /&gt; 
+    );
+    return ( . . . as before . . )
+}</code></pre>
+<p>In <code>components/newsItwm/index.js</code>, add the onClick handler:</p>
+<pre><code>export default class NewsItem extends Component {
+    handleVote = () =&gt;  this.props.upvoteHandler(this.props.post.id);
+
+    render() {
+        . . . . . . 
+        return (
+            . . . . .
+            &lt;span className=&quot;ptr&quot; onClick={this.handleVote}&gt;
+                &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;thumbs-up&quot;]} size=&quot;2x&quot; /&gt;
+            &lt;/span&gt;
+            . . . . . . . . 
+        );
+    }
+}</code></pre>
+<p>Assuming the development server is running, in the browser you should now be able to increment a news item&#39;s upvote count. No dynamic rerendering is happening yet. To fix this, in <code>src/App.js</code> make the following changes:</p>
+<pre><code>. . . . imports . . . 
+import _ from &#39;lodash&#39;;
+
+export default class App extends Component {
+   . . . . . . .
+   render() {
+    let posts = _.sortBy(api.getAll(), post =&gt; -post.upvotes);
+    return ( 
+        . . . as before . . 
+    );
+   }
+}</code></pre>
+<p>In the browser upvote an item a few times to force a reordering.</p>
+<p>We should also update Storybook. In <code>.storybook/addons.js</code> register the addon:</p>
+<pre><code>import &#39;@storybook/addon-actions/register&#39;;</code></pre>
+<p>In <code>stories/index.js</code> change the relevant story:</p>
+<pre><code>. . . . other imports . . . 
+import { action } from &quot;@storybook/addon-actions&quot;;
+
+. . .  other stories . . . .
+storiesOf(&quot;Hacker App/News Item&quot;, module)
+  .add(&quot;default&quot;, () =&gt; &lt;NewsItem post={post} upvoteHandler={action(&quot;upvoted&quot;)} /&gt; )
+  .add(&quot;No hyperlink&quot;, () =&gt; &lt;NewsItem post={{ ...post, link: &quot;&quot; }} upvoteHandler={action(&quot;upvoted&quot;)}/&gt;);
+. . .  other stories . . . .</code></pre>
+<p>From the <code>twoApps/hackerNews</code> folder, commit the work so far:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Upvote feature completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h2>Hacker News (Contd.).</h2>
+<h3>Add news item feature.</h3>
+<p>The add news item feature is very similar to the add contact feature in the Contact List app. Their are two aspects to the implementation:</p>
+<ul>
+<li>Recording the data entry as it happens.</li>
+<li>Handling the form submit action.</li>
+</ul>
+<p>For the first part, make the following changes to <code>components/newsForm/index.js</code>:</p>
+<pre><code>export default class Form extends Component {
+    state = { ... as before ....};
+
+    handleTitleChange = (e) =&gt;  this.setState({title: e.target.value});
+    handleAuthorChange = (e) =&gt;  this.setState({author: e.target.value});
+    handleLinkChange = (e) =&gt; this.setState({link: e.target.value});
+
+    render() {
+       return (
+        &lt;form   className=&quot;form bg-dark text-light&quot;&gt;
+            &lt;h3&gt;Add a news item&lt;/h3&gt;
+            &lt;div className=&quot;form-group&quot;&gt;
+                &lt;input type=&quot;text&quot;
+                    className=&quot;form-control&quot;
+                    placeholder=&quot;Title&quot;
+                    value={this.state.title}
+                    onChange={ this.handleTitleChange } /&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;form-group&quot;&gt;
+                &lt;input type=&quot;text&quot;
+                    className=&quot;form-control&quot;
+                    placeholder=&quot;Author&quot;
+                    value={this.state.author}
+                    onChange={ this.handleAuthorChange } /&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;form-group&quot;&gt;
+                &lt;input type=&quot;text&quot;
+                className=&quot;form-control&quot;
+                placeholder=&quot;Link&quot;
+                value={this.state.link}
+                onChange={ this.handleLinkChange } /&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; className=&quot;btn btn-primary&quot;&gt;Add&lt;/button&gt;
+        &lt;/form&gt;
+        );
+    }
+}</code></pre>
+<p>The new handler functions are simply keeping the state object in sync with the input text fields.</p>
+<p>The submit form processing is based on the inverse data flow pattern. In <code>src/App.js</code> make the following addition:</p>
+<pre><code>export default class App extends Component {
+  addNewsItem = (title, author, link) =&gt; {
+    api.add(title, author, link);
+    this.setState({});
+  };
+  incrementUpvote = id =&gt; {.......}
+  render() {
+     .......
+     return ( 
+         ......
+        &lt;Form handleAdd={this.addNewsItem} /&gt;
+       ..........
+     );
+  }
+}</code></pre>
+<p>In <code>components/newsForm/index.js</code> complete the pattern implementation:</p>
+<pre><code>export default class Form extends Component {
+    state = { ....};
+
+    handleSubmit = (e) =&gt; {
+        e.preventDefault();
+        this.props.handleAdd( this.state.title, this.state.author, this.state.link)
+        this.setState({ title: &#39;&#39;, author:&#39;&#39;, link: &#39;&#39;})
+    }
+    ....other handlers .....
+    render() { 
+        ........
+        return ( 
+            .......
+            &lt;button type=&quot;submit&quot; className=&quot;btn btn-primary&quot;
+                onClick={this.handleSubmit}&gt;Add&lt;/button&gt;
+           .....
+        );
+    }
+}</code></pre>
+<p>Start the development server (npm start) and try adding a new news item (and upvoting it)</p>
+<p>From the <code>twoApps/hackerNews</code> folder, commit the work so far:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Add news post feature completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="06">
+            <h2>Hacker News (Contd.).</h2>
+<h3>Exercise.</h3>
+<p>For completeness we should update the Storybook code for the NewsForm component. Do this as an exercise. </p>
+<p>The screenshot shows a sample result after filling in the form fields and hitting the submit/Add button.</p>
+<p><img src="./img/addstory.png" alt=""></p>
+<hr>
+<p>On completion, go to the <code>hackerNews</code> folder and commit the work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Updated Storybook&quot;</code></pre>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>

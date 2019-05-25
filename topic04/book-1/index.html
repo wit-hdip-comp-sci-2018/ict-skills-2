@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  Thinking in React.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab-Routing_Contacts">
+          Lab-Routing_Contacts
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
+        <a class="item" data-tab="06">
+          06
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab-Routing_Contacts">
+            <h1>Routing.</h1>
+<p>In this lab we add <strong>routing</strong> to the Contact List app.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>The objective is to display detailed information about a contact when the user clicks their image on the main view - see example below:</p>
+<p><img src="./img/detail1.png" alt=""></p>
+<p>The additional information shown on this new page is taken from the JSON structure returned by the RandomUser API. Included in the structure are longitude and latitude reading, however, they are randomly generated and do not correlate to the contact address property. For this reason the map on the right is fixed at WIT, Waterford for demo purposes.  </p>
+<p>The URL for the new view will be <strong>parameterized</strong>, for example:</p>
+<blockquote>
+<p>&#39;<a href="http://localhost:3000/contacts/(810)-622-3633(535)-237-9962">http://localhost:3000/contacts/(810)-622-3633(535)-237-9962</a>&#39;, where <em>(810)-622-3633(535)-237-9962</em> is a concatenation of the phone number and cell number for the contact (somewhat arbitrary). </p>
+</blockquote>
+<p>The general form of the URL is:</p>
+<blockquote>
+<p><a href="http://localhost:3000/contacts/:id">http://localhost:3000/contacts/:id</a></p>
+</blockquote>
+<h3>Setup.</h3>
+<p>In React apps routing is provided by a separate package - see react-router-dom entry in dependencies section of <code>package.json</code>. </p>
+<p>Some routing code changes we will make to existing components will break our Storybook code. To preempt this some enhancements are required in  <code>stories/index.js</code>. Add an import at the top:</p>
+<pre><code>import { MemoryRouter, Route } from &quot;react-router&quot;;</code></pre>
+<p>Replace the Contact and Contact List stories with the following:</p>
+<pre><code>storiesOf(&quot;Contact List App/Contact&quot;, module)
+.addDecorator(story =&gt; (
+  &lt;MemoryRouter initialEntries={[&quot;/&quot;]}&gt;{story()}&lt;/MemoryRouter&gt;
+))
+.add(&quot;default&quot;, () =&gt; ( 
+   &lt;Contact contact={sample} deleteHandler={action(&#39;Delete confirmed&#39;) }/&gt;
+));
+
+storiesOf(&quot;Contact List App/Contact List&quot;, module)
+.addDecorator(story =&gt; (
+  &lt;MemoryRouter initialEntries={[&quot;/&quot;]}&gt;{story()}&lt;/MemoryRouter&gt;
+))
+.add(&quot;default&quot;, () =&gt; { 
+  const samples = [sample, sample, sample, sample, sample]
+  return &lt;ContactList contacts={samples}/&gt;
+});</code></pre>
+<p>The addDecorator() method wraps our custom component (e.g. Contact) inside a React framework component. The MemoryRouter component is a simple replacement for the Router component that will be required in the app itself - see later.</p>
+<p>In the same file, replace the &#39;sample&#39; const declaration with the following:</p>
+<pre><code>const sample = {
+  name: {first:&#39;Joe&#39;, last:&#39;Bloggs&#39;},
+  location: {
+    street: &quot;ljan terrasse 346&quot;,
+    city: &quot;vear&quot;,
+    state: &quot;rogaland&quot;,
+    postcode: &quot;3095&quot;,
+    coordinates: {
+      latitude: &quot;54.8646&quot;,
+      longitude: &quot;-97.3136&quot;
+    },
+    timezone: {
+      offse: &quot;-10:00&quot;,
+      description: &quot;Hawaii&quot;
+    }
+  },
+    &quot;login&quot;: {
+      &quot;uuid&quot;: &quot;c4168eac-84b8-46ea-b735-c9da9bfb97fd&quot;,
+      &quot;username&quot;: &quot;bluefrog786&quot;,
+      &quot;password&quot;: &quot;ingrid&quot;,
+      &quot;salt&quot;: &quot;GtRFz4NE&quot;,
+      &quot;md5&quot;: &quot;5c581c5748fc8c35bd7f16eac9efbb55&quot;,
+      &quot;sha1&quot;: &quot;c3feb8887abed9ec1561b9aa2c9f58de21d1d3d9&quot;,
+      &quot;sha256&quot;: &quot;684c478a98b43f1ef1703b35b8bbf61b27dbc93d52acd515e141e97e04447712&quot;
+    },
+    &quot;dob&quot;: {
+      &quot;date&quot;: &quot;1975-11-12T06:34:44Z&quot;,
+      &quot;age&quot;: 42
+    },
+    &quot;registered&quot;: {
+      &quot;date&quot;: &quot;2015-11-04T22:09:36Z&quot;,
+      &quot;age&quot;: 2
+    },
+  email: &#39;j.bloggs@example.com&#39;,
+  phone: &#39;012-3456789&#39;,
+  picture: {thumbnail: &#39;./profile.png&#39;,
+  large: &#39;./profile.png&#39;}
+}</code></pre>
+<p>We will be using some extra icons from Font Awesome in the new page. Replace the content of <code>src/fontawesome.js</code> with the following:</p>
+<pre><code>import { library } from &quot;@fortawesome/fontawesome-svg-core&quot;;
+import {
+  faEnvelope,
+  faPhone,
+  faHome,
+  faBirthdayCake,
+  faArrowCircleLeft
+} from &quot;@fortawesome/free-solid-svg-icons&quot;;
+
+library.add(faEnvelope, faPhone, faHome, faBirthdayCake, faArrowCircleLeft);</code></pre>
+<p>Finally, we also need a utility function to capitalize multi-word strings, for example, an address. Create the file <code>src/util.js</code> and add the following:</p>
+<pre><code>export function capitalize(string) 
+{
+    return string.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}</code></pre>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code> $ git add -A
+ $ git commit -m &quot;Routing setup completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>Contact List App.</h2>
+<h3>Routing declaration.</h3>
+<p>In <code>src/index.js</code>, replace the entire content with the following:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+import { BrowserRouter, Route, Redirect, Switch } from &quot;react-router-dom&quot;;
+import request from &quot;superagent&quot;;
+import api from &quot;./dataStore/stubAPI&quot;; // NEW
+import &quot;../node_modules/bootstrap/dist/css/bootstrap.css&quot;;
+import App from &quot;./App&quot;;
+import ContactPage from &quot;./components/contactPage&quot;;
+
+class Router extends Component {
+  componentDidMount() {
+    request.get(&quot;https://randomuser.me/api/?results=50&quot;).end((error, res) =&gt; {
+      if (res) {
+        let { results: contacts } = JSON.parse(res.text);
+        api.initialize(contacts);
+        this.setState({});
+      } else {
+        console.log(error);
+      }
+    });
+  }
+
+  render() {
+    return (
+       &lt;BrowserRouter&gt;
+        &lt;div className=&quot;jumbotron&quot;&gt;
+          &lt;div className=&quot;container-fluid &quot;&gt;
+            &lt;Switch&gt;
+              &lt;Route path=&quot;/contacts/:id&quot; component={ContactPage} /&gt;
+              &lt;Route exact path=&quot;/&quot; component={App} /&gt;
+              &lt;Redirect from=&quot;*&quot; to=&quot;/&quot; /&gt;
+            &lt;/Switch&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/BrowserRouter&gt;
+    );
+  }
+}
+
+ReactDOM.render(&lt;Router /&gt;, document.getElementById(&quot;root&quot;));</code></pre>
+<p>[These changes introduce some errors which can be ignored for the moment.]</p>
+<p>Some points to note in the above code:</p>
+<ol>
+<li>The app&#39;s routing logic is declared in a separate component, Router. It is the component passed to ReactDOM.render() and so is at the top of the component hierarchy.</li>
+<li>It is appropriate that this new component should control the initial communication with the API - the componentDidMount method.</li>
+<li>In general, this &#39;routing component&#39; may includes some <strong>static/persistent elements</strong> that typically represet a fixed header/footer across all views in an app. In this app we have some CSS styling that applies to all pages, e.g. jumbotron.</li>
+</ol>
+<p>In <code>src/App.js</code>, remove the componentDidMount method - this logic has now been promoted to the Router component. Change the return statement of the render method to this: </p>
+<pre><code>return (
+      &lt;Fragment&gt;
+        &lt;Header noContacts={sortedContacts.length} /&gt;
+        &lt;FilterControls onUserInput={this.handleChange} /&gt;
+        &lt;ContactList
+          contacts={sortedContacts}
+          deleteHandler={this.deleteContact}
+        /&gt;
+      &lt;/Fragment&gt;
+    );</code></pre>
+<p>In the same file import the Fragment tag from React:</p>
+<pre><code>import React, { Component, Fragment } from &quot;react&quot;;</code></pre>
+<p>Create the file <code>src/components/contactPage.js</code> for the new view/page. It will need a significant amount of code, however, we will use a stub implementation for starters. Add the following code to the file:</p>
+<pre><code>import React, {Fragment} from &quot;react&quot;;
+import { withRouter } from &quot;react-router-dom&quot;;
+
+const ContactPage = props =&gt; {
+   return (
+    &lt;Fragment&gt;
+        &lt;h3&gt; Contact id: {props.match.params.id} &lt;/h3&gt;
+        &lt;h3&gt; Detail page stub &lt;/h3&gt;
+    &lt;/Fragment&gt;
+  );
+};
+
+export default withRouter(ContactPage);</code></pre>
+<p>For variety we are using the stateless functional component style - the class style would work as well. The main feature to note here is how the component accesses the parameter portion of the active URL address (a contact id). The <em>withRouter()</em> function injects various routing-related props in to the component, including the <em>props.match.params</em> object. Before testing the new page, we need to implement hyperlinks in the main page. In <code>src/components/contact/indexc.js</code>, in the return statement of the render method, wrap the current img tag in a Link component:</p>
+<pre><code>&lt;Link
+    to={`/contacts/${this.props.contact.phone}${this.props.contact.cell}`}
+    &gt;
+    &lt;img
+        className=&quot;card-img-tag center &quot;
+        alt={this.props.contact.name}
+        src={this.props.contact.picture.thumbnail}
+    /&gt;
+&lt;/Link&gt;</code></pre>
+<p>Also, add an import at the top:</p>
+<pre><code>import { Link } from &quot;react-router-dom&quot;;</code></pre>
+<p>Link is an alternative to the standard HTML anchor tag. Link is integrate with the React Router system whereas the anchor tag is only suitable for external hyperlinks. </p>
+<p>Start the development server (npm start). In the browser, click on any contact to navigate to the stub detail page:</p>
+<p><img src="./img/detailstub.png" alt=""></p>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Stub contact page working&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Page component design</h3>
+<p>The image below shows the component breakdown we will develop:</p>
+<p><img src="./img/components.png" alt=""></p>
+<p>This yields a component hierarchy as follows:</p>
+<pre><code>             ContactPage
+                  |
+           ------------------
+          |                  |             |
+     ContactPublic     ContactPrivate
+          |
+       ----------------
+      |                |
+PublicProfile       Map </code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>Contact List App (Contd.).</h2>
+<h3>PublicProfile component</h3>
+<p>Crete the file <code>src/components/contactPublic/publicProfile.js</code> and add the following:</p>
+<pre><code>import React, { Fragment } from &quot;react&quot;;
+import { capitalize } from &quot;../../util&quot;;
+import &quot;../../fontawesome&quot;;
+import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
+
+export default ({ user }) =&gt; {
+  const address = capitalize(
+    `${user.location.street}, ${user.location.city}, ${user.location.state}`
+  );
+  const dob = user.dob.date.split(&quot;-&quot;);
+  const birthdate = `${dob[2].substr(0, 2)}/${dob[1]}/${dob[0]}  `;
+  return (
+    &lt;Fragment&gt;
+      &lt;h4&gt;
+        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;home&quot;]} /&gt;
+        &lt;span&gt; {address}&lt;/span&gt;
+      &lt;/h4&gt;
+      &lt;h4&gt;
+        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;phone&quot;]} /&gt;
+        &lt;span&gt; {user.phone}&lt;/span&gt;
+      &lt;/h4&gt;
+      &lt;h4&gt;
+        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;envelope&quot;]} /&gt;
+        &lt;span&gt; {user.email}&lt;/span&gt;
+      &lt;/h4&gt;
+      &lt;h4&gt;
+        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;birthday-cake&quot;]} /&gt;
+        &lt;span&gt; {birthdate}&lt;/span&gt;
+      &lt;/h4&gt;
+    &lt;/Fragment&gt;
+  );
+};</code></pre>
+<p>The expression &#39;( {user} )&#39; in the component function declaration is shorthand for declaring a variable &#39;user&#39; and assigning it to &#39;props.user&#39;.</p>
+<p>In <code>stories/index.js</code> add a new story:</p>
+<pre><code>...... other imports .......
+import PublicProfile from &#39;../src/components/contactPublic/publicProfile&#39;
+
+..... other  stories .....
+storiesOf(&quot;Contact List App/Contact Page/PublicProfile&quot;, module)
+.add(&quot;default&quot;, () =&gt; ( 
+   &lt;PublicProfile user={sample}/&gt;
+));</code></pre>
+<p>Start the storybook server:</p>
+<pre><code>$ npx start-storybook -c .storybook/ -p 9001 -s ./public/</code></pre>
+<p>Test the new story:</p>
+<p><img src="./img/story1.png" alt=""></p>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;PublicProfile component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h2>Contact List App (Contd.).</h2>
+<h3>ContactPrivate component</h3>
+<p>Crete the file <code>src/components/contactPrivate/index.js</code> and add the following:</p>
+<pre><code>import React from &quot;react&quot;;
+import &quot;./contactPrivate.css&quot;;
+import &quot;../../fontawesome&quot;;
+
+export default ({ user }) =&gt; {
+  return (
+    &lt;div className=&quot;row&quot;&gt;
+      &lt;div className=&quot;col-12&quot;&gt;
+        &lt;ul className=&quot;specs&quot;&gt;
+          &lt;li&gt;
+            &lt;span&gt;Login&lt;/span&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;UUID&lt;/dt&gt;
+              &lt;dd&gt;{user.login.uuid}&lt;/dd&gt;
+              &lt;dt&gt;Username&lt;/dt&gt;
+              &lt;dd&gt;{user.login.username}&lt;/dd&gt;
+              &lt;dt&gt;Password&lt;/dt&gt;
+              &lt;dd&gt;{user.login.password}&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;span&gt;Coordinates&lt;/span&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;Longitude&lt;/dt&gt;
+              &lt;dd&gt;{user.location.coordinates.longitude}&lt;/dd&gt;
+              &lt;dt&gt;Latitude&lt;/dt&gt;
+              &lt;dd&gt;{user.location.coordinates.latitude}&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;span&gt;Timezone&lt;/span&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;Offset&lt;/dt&gt;
+              &lt;dd&gt;{user.location.timezone.offset}&lt;/dd&gt;
+              &lt;dt&gt;Description&lt;/dt&gt;
+              &lt;dd&gt;{user.location.timezone.description}&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;span&gt;Registered&lt;/span&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;Date&lt;/dt&gt;
+              &lt;dd&gt;{user.registered.date}&lt;/dd&gt;
+              &lt;dt&gt;Age&lt;/dt&gt;
+              &lt;dd&gt;{user.registered.age}&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};</code></pre>
+<p>Create the associated CSS file <code>src/components/contactPrivate/contactPrivate.css</code> and add the following:</p>
+<pre><code>ul.specs {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul.specs &gt; li{
+    display: inline-block;
+    width: 200px;
+    vertical-align: top;
+  }
+
+  ul.specs &gt; li &gt; span{
+    font-weight: bold;
+    font-size: 1.2em;
+  }</code></pre>
+<p>In <code>stories/index.js</code> add a new story:</p>
+<pre><code>...... other imports .......
+import ContactPrivateDetails from &#39;../src/components/contactPrivate/&#39;
+
+..... other  stories .....
+storiesOf(&quot;Contact List App/Contact Page/ContactPrivate&quot;, module)
+.add(&quot;default&quot;, () =&gt; ( 
+   &lt;ContactPrivateDetails user={sample}/&gt;
+));</code></pre>
+<p>Test the new story:</p>
+<p><img src="./img/story2.png" alt=""></p>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;ContactPrivate component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h2>Contact List App (Contd.).</h2>
+<h3>ContactPublic component.</h3>
+<p>Create the file <code>src/components/contactPublic/index.js</code> and paste in the following:</p>
+<pre><code>import React, { Fragment } from &quot;react&quot;;
+import { capitalize } from &quot;../../util&quot;;
+import &quot;../../fontawesome&quot;;
+import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
+import &quot;./contactPublic.css&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+import PublicProfile from &quot;../contactPublic/publicProfile&quot;
+
+export default ({ user }) =&gt; {
+  const name = capitalize(`${user.name.first} ${user.name.last}`);
+  return (
+    &lt;Fragment&gt;
+      &lt;div className=&quot;row&quot;&gt;
+      &lt;div className=&quot;col-2&quot;&gt;
+        &lt;Link to=&quot;/&quot;&gt;
+          &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;arrow-circle-left&quot;]} size=&quot;3x&quot; /&gt;
+          &lt;span&gt;Back&lt;/span&gt;
+        &lt;/Link&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;col-3 offset-2&quot;&gt;
+          &lt;h2&gt;{name}&lt;/h2&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;row&quot;&gt;
+        &lt;div className=&quot;col-3&quot;&gt;
+          &lt;img src={user.picture.large} className=&quot;contact&quot; alt={name} /&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;col-4&quot;&gt;
+          &lt;PublicProfile user={user} /&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;col-5 bg-secondary text-light&quot;&gt;
+           &lt;span&gt;Map placeholder&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/Fragment&gt;
+  );
+};</code></pre>
+<p>In truth this component is quite large and could be subdivided into smaller sub-components. Also, the Google Map section will be covered in a later lab.</p>
+<p>Crete an associated CSS file <code>src/components/contactPublic/contactPublic.css</code>:</p>
+<pre><code>img.contact {
+    float: left;
+    border: 1px solid black;
+    margin-bottom: 2em;
+    background-color: gold;
+    padding: 1em;
+    width: 100%;
+  }
+
+  .row {
+    margin-bottom: 10px;
+  }</code></pre>
+<p>As an exercise you could write a story for this component. [Hint: You will need to decorate it with the MemoryRouter to prevent storybook reporting an error related to the Link component].</p>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;ContactPublic component implemented&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="06">
+            <h2>Contact List App (Contd.).</h2>
+<h3>Assemble the page,</h3>
+<p>Replace the content of <code>src/components/contactPage.js</code> with the following:</p>
+<pre><code>import React, { Fragment } from &quot;react&quot;;
+import { withRouter } from &quot;react-router-dom&quot;;
+import api from &quot;../dataStore/stubAPI&quot;; // NEW
+import ContactPublic from &quot;../components/contactPublic/&quot;;
+import ContactPrivate from &quot;../components/contactPrivate/&quot;;
+
+const ContactPage = props =&gt; {
+  const { id } = props.match.params;
+  const contact = api.find(id);
+  return (
+    &lt;Fragment&gt;
+      {contact ? (
+        &lt;Fragment&gt;
+          &lt;ContactPublic user={contact} /&gt;           
+          &lt;ContactPrivate user={contact} /&gt;
+        &lt;/Fragment&gt;
+      ) : (
+        &lt;p&gt;Waiting for contact details&lt;/p&gt;
+      )}
+    &lt;/Fragment&gt;
+  );
+};
+
+export default withRouter(ContactPage);</code></pre>
+<p>Start the development server (npm start) and click on any contact in the main view to see the new contact page.</p>
+<p><img src="./img/nomap.png" alt=""></p>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Contact page without Map working&quot;</code></pre>
+<p>To demonstrate nested routes, suppose the &#39;private data&#39; for a contact is displayed only when the browser URL is: </p>
+<blockquote>
+<p>&#39;<a href="http://localhost:3000/contacts/:id/private">http://localhost:3000/contacts/:id/private</a>&#39; - the /private is an extension to the normal URL for the ContactPage view.</p>
+</blockquote>
+<p>The UI for the Cintact Page will now look as follows:</p>
+<p><img src="./img/link.png" alt=""></p>
+<p>On clicking the &#39;See Private Data&#39; button, the URL will change and the additional private data will display - in practice a user might be required to authenticate after clicking the button. </p>
+<p>In <code>components/contactPage.js</code> include some additional imports from react-router:</p>
+<pre><code>import { withRouter, Route, Link } from &quot;react-router-dom&quot;;</code></pre>
+<p>Change the return statement of the functional component to this:</p>
+<pre><code> return (
+    &lt;Fragment&gt;
+      {contact ? (
+        &lt;Fragment&gt;
+          &lt;ContactPublic user={contact} /&gt; 
+           {!props.history.location.pathname.endsWith(&quot;/private&quot;) &amp;&amp; (
+            &lt;Link class=&quot;btn btn-primary active&quot; to={`/contacts/${id}/private`}&gt;See Private Data&lt;/Link&gt;
+          )}
+          &lt;Route path={`/contacts/:id/private`} 
+              render={ (props) =&gt; &lt;ContactPrivate {...props} user={contact} /&gt; } /&gt;
+
+        &lt;/Fragment&gt;
+      ) : (
+        &lt;p&gt;Waiting for contact details&lt;/p&gt;
+      )}
+    &lt;/Fragment&gt;
+  );</code></pre>
+<p>The new &#39;See Private Data&#39; button display is conditional on the current browser URL (props.history.location.pathname), i.e. display the buttom when the URL does NOT end with &#39;/private&#39;. </p>
+<p>In the browser you must return to the main view and them click a contacxt again.</p>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Added nested route for private data&quot;</code></pre>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  React Component model.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab_Static_React_Apps-2">
+          Lab_Static_React_Apps-2
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
+        <a class="item" data-tab="Solutions">
+          Solutions
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab_Static_React_Apps-2">
+            <h1>Building React SPAs (Static).</h1>
+<p>This lab builds a static version of the second app mentioned in the previous lab - the Hacker News app.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>The starting code for this lab is the <code>twoApps/hackerNews</code> folder - part of the archive unzipped in the previous lab.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h2>Hacker News App.</h2>
+<h3>Setup.</h3>
+<p>In a terminal window, go to <code>twoApps/hackernews</code> folder and install the required packages:</p>
+<pre><code>$ npm install</code></pre>
+<p>We will need FontAwesome in this app as well. Following the same approach as before, create the file <code>src/fontawesome.js</code> and paste in this code:</p>
+<pre><code>import { library } from &quot;@fortawesome/fontawesome-svg-core&quot;;
+import { faThumbsUp} from &quot;@fortawesome/free-solid-svg-icons&quot;;
+
+library.add(
+    faThumbsUp
+    );</code></pre>
+<h3>UI Design.</h3>
+<p>The desired UI for this app looks as follows:</p>
+<p><img src="./img/HackerUI.png" alt=""></p>
+<p>Note, each news item has a &#39;Comment&#39; link. It will allow the user add a comment for the item.</p>
+<p>The app&#39;s component breakdown is illustrated below:</p>
+<p><img src="./img/HackerDesign.png" alt=""></p>
+<p>This gives a component hierarchy as follows:</p>
+<pre><code>          App (default)
+           |
+     ---------------
+    |              |
+ NewsList      NewsForm
+    | 
+NewsItem</code></pre>
+<p>Create the following file structure to support this component set:</p>
+<p><img src="./img/hackfiles.png" alt=""></p>
+<p>Commit the work to the Git repository (from the <code>twoApps/hackernews</code> folder) with the commands:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Setup completed&quot;</code></pre>
+<p>Start the Storybook server:</p>
+<pre><code>$ npx start-storybook -p 9001 -c .storybook/</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h2>Hacker News App (Contd.).</h2>
+<h3>NewsForm component.</h3>
+<p>In <code>src/components/newsForm/index.js</code> use the following code:</p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import &#39;./newsForm.css&#39;;
+
+export default class Form extends Component {
+    render() {
+        return (
+        &lt;form  className=&quot;form bg-dark text-light&quot;&gt;
+            &lt;h3&gt;Add a news item&lt;/h3&gt;
+            &lt;div className=&quot;form-group&quot;&gt;
+              &lt;input type=&quot;text&quot;
+                className=&quot;form-control&quot;
+                placeholder=&quot;Title&quot;&gt;&lt;/input&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;form-group&quot;&gt;
+              &lt;input type=&quot;text&quot;
+                className=&quot;form-control&quot;
+                placeholder=&quot;Author&quot;&gt;&lt;/input&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;form-group&quot;&gt;
+                &lt;input type=&quot;text&quot;
+                  className=&quot;form-control&quot;
+                placeholder=&quot;Link&quot;&gt;&lt;/input&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; className=&quot;btn btn-primary&quot;&gt;Add&lt;/button&gt;
+        &lt;/form&gt;
+        );
+    }
+}</code></pre>
+<p>Add some custom CSS to <code>src/components/newsForm/newsForm.css</code>:</p>
+<pre><code>.form {
+    margin-top: 30px; 
+    padding: 10px;
+}</code></pre>
+<p>Add a story to <code>stories/index.js</code>:</p>
+<pre><code>. . . . imports . . . . .  
+import NewsForm from &#39;../src/components/newsForm/&#39;;
+
+storiesOf(&quot;Hacker App/News Form&quot;, module).add(&quot;default&quot;, () =&gt; &lt;NewsForm /&gt;);</code></pre>
+<p>Examine the component in the Storybook UI.</p>
+<p><img src="./img/formstory.png" alt=""></p>
+<p>Commit the work to the Git repository (from the <code>twoApps/hackernews</code> folder) with the commands:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;NewsForm component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h2>Hacker News App (Contd.).</h2>
+<h3>NewsItem component.</h3>
+<p>In <code>src/components/newsItem/index.js</code> paste in the following code:</p>
+<pre><code>import React, { Component, Fragment } from &#39;react&#39;;
+import &#39;./newsItem.css&#39;;
+import &quot;../../fontawesome&quot;;
+import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
+
+export default class NewsItem extends Component {
+  render() {
+        let line = this.props.post.link ? (
+            &lt;a href={this.props.post.link}&gt;{this.props.post.title}&lt;/a&gt;
+        ) : (
+            &lt;span&gt;{this.props.post.title}&lt;/span&gt;
+        );
+        return (
+            &lt;Fragment&gt;
+                &lt;span className=&quot;ptr&quot; &gt;
+                    &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;thumbs-up&quot;]} size=&quot;2x&quot; /&gt;
+                &lt;/span&gt;
+                {` ${this.props.post.upvotes}`}
+                &lt;span className=&quot;newsitem&quot;&gt;
+                    {line}
+                    &lt;span&gt;
+                        &lt;a href=&quot;/&quot;&gt;Comments&lt;/a&gt;
+                    &lt;/span&gt;
+                &lt;/span&gt;
+                &lt;p className=&quot;author&quot;&gt;{this.props.post.author}&lt;/p&gt;
+            &lt;/Fragment&gt;
+        );
+    }
+}</code></pre>
+<p>Note, the href for the Comment link is set to a defsult value for the moment - we will fix this in a later lab.</p>
+<p>Add some custom CSS to <code>src/components/newsItem/newsItem.css</code>:</p>
+<pre><code>.newsitem {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.ptr {
+    cursor: pointer;
+}
+
+.author {
+    padding-left: 120px;
+    font-style: italic;
+}
+
+.newsitem &gt; span {
+    padding-left: 10px;
+}</code></pre>
+<p>This component expects a prop object detailing the news item (or news post) data. The object&#39;s structure is:</p>
+<pre><code>{
+    id: xx,
+    title: &#39; ....... &#39;,
+    author: &#39; ....... &#39;,
+    link: &#39; ..... URL ......&#39;,   (Optional)
+    upvotes: xx,
+    comments: []
+}</code></pre>
+<p>The component renders slightly different depending on whether the news item has a hyperlink to the article or not. Add two stories to <code>stories/index.js</code>:</p>
+<pre><code>. . . . other imports . . . . 
+import NewsItem from &#39;../src/components/newsItem&#39;;
+
+const post = {
+    id: 1 ,
+    title : &#39;Post 1.&#39;,
+    link : &#39;http://www.foo.bar&#39;,
+    author : &#39;Joe Bloggs&#39;,
+    comments : [],
+    upvotes: 10
+};
+
+    . . . other stories . . . . 
+
+storiesOf(&#39;Hacker App/News Item&#39;, module)
+    .add(&#39;default&#39;, () =&gt; &lt;NewsItem post= { post }  /&gt;
+    )
+    .add(&#39;No hyperlink&#39;, () =&gt; &lt;NewsItem post= { { ...post, link: &#39;&#39;} }  /&gt;
+    )</code></pre>
+<p><img src="./img/itemstory.png" alt=""></p>
+<p>Commit the work to the Git repository (from the <code>twoApps/hackernews</code> folder) with the commands:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;NewsItm component completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h2>Hacker News App (Contd.).</h2>
+<h3>Exercise.</h3>
+<p>The remaining component is NewsList - renders a list of news items. Add the following stub implementation to <code>src/components/newsList/index.js</code></p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import NewsItem from &#39;../newsItem/&#39;;
+
+export default class NewsList extends Component {
+    render() {
+        return (
+            &lt;h1&gt;TODO&lt;/h1&gt;
+        );
+    }
+}</code></pre>
+<p>Add this story to <code>stories/index.js</code>:</p>
+<pre><code>..... other imports ...... 
+import NewsList from &#39;../src/components/newsList&#39;;
+
+..... other stories .....
+storiesOf(&#39;Hacker App/News List&#39;, module)
+    .add(&#39;default&#39;, () =&gt; { 
+        const defaultPosts = [
+            { ...post, id: 1, title: &#39;Post 1&#39;, upvotes: 10 },
+            { ...post, id: 2, title: &#39;Post 2&#39;, upvotes: 20 },
+            { ...post, id: 3, title: &#39;Post 3&#39;, upvotes: 30 },
+            { ...post, id: 4, title: &#39;Post 4&#39;, upvotes: 40 }
+        ];
+    return &lt;NewsList posts= { defaultPosts }  /&gt;
+});</code></pre>
+<p>The objective is to have this story render as shown below. YOU ARE REQUIRED to complete the implement of the component to achieve this. Use the ContactList component from  the Contact List app as a guide.</p>
+<p><img src="./img/liststory.png" alt=""></p>
+<p>See <a href="./index.html#/Solutions">here</a> for sample solution.</p>
+<p>Commit the work to the Git repository (from the <code>twoApps/hackernews</code> folder) with the commands:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;NewsList component  completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h2>Hacker News App (Contd.).</h2>
+<h3>Assemble the App.</h3>
+<p>We can now assemble the components in to an app. Stop the Storybook server and start the create-react-app development server:</p>
+<pre><code>$ npm start</code></pre>
+<p>Replace the content of <code>src/App.js</code> with the the following:</p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import NewsList from &#39;./components/newsList&#39;;
+import Form from &#39;./components/newsForm&#39;;
+
+export default class App extends Component {
+    render() {
+        const testPosts = [
+            {  id: 1 ,
+                title : &#39;Why You Can No Longer Get Lost in the Crowd&#39;,
+                link : &#39;https://www.nytimes.com/2019/04/17/opinion/data-privacy.html&#39;,
+                author : &#39;Woodrow Hartzog&#39;,
+                comments : [],
+                upvotes : 10
+            },
+            { 
+                id: 2,
+                title : &quot;Samsung&#39;s folding phone breaks for reviewers&quot;,
+                link : &#39;https://www.bbc.com/news/technology-47970788&#39;,
+                author : &#39;Dave Lee&#39;,
+                comments : [],
+                upvotes : 12
+            },
+            { 
+                id: 3,
+                title : &#39;Microsoft turned down facial-recognition sales on human rights concerns&#39;,
+                link : null,
+                author : &#39;Joseph Mennn&#39;,
+                comments : [],
+                upvotes : 12
+            },
+            { 
+                id: 4,
+                title : &#39;Follow-up: I found two identical packs of Skittles, among 468 packs with a total of 27,740 Skittles&#39;,
+                link : &#39;https://possiblywrong.wordpress.com/&#39;,
+                author : &#39;unknown&#39;,  
+                comments : [],
+                upvotes : 2
+            },
+            {  id: 5 ,
+                title : &#39;THE COMING DESERT&#39;,
+                link : &#39;https://newleftreview.org/issues/II97/articles/mike-davis-the-coming-desert&#39;,
+                author : &#39;MIKE DAVIS&#39;,
+                comments : [],
+                upvotes : 10
+            },           {  id: 6 ,
+                title : &quot;Sleep myths &#39;damaging your health&#39;&quot;,
+                link : &#39;https://www.bbc.com/news/health-47937405&#39;,
+                author : &#39;James Gallagher&#39;,
+                comments : [],
+                upvotes : 10
+            },           {  id: 7 ,
+                title : &#39;Planet’s ocean-plastics problem detailed in 60-year data set&#39;,
+                link : &#39;https://www.nature.com/articles/d41586-019-01252-0&#39;,
+                author : &#39;Matthew Warren&#39;,
+                comments : [],
+                upvotes : 10
+            }
+        ] ;
+    return (
+        &lt;div className=&quot;jumbotron&quot;&gt;
+        &lt;div className=&quot;container-fluid&quot;&gt;
+        &lt;div className=&quot;row&quot;&gt;
+            &lt;div className=&quot;col-md-6 offset-3&quot;&gt;
+                &lt;h1&gt;&lt;a href=&quot;/&quot;&gt;Hacker News&lt;/a&gt;&lt;/h1&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;row&quot;&gt;
+            &lt;div className=&quot;col-md-4 &quot;&gt;
+                &lt;Form /&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;col-md-8&quot;&gt;
+                &lt;NewsList posts={testPosts} /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;    
+            &lt;/div&gt;    
+            &lt;/div&gt;    
+        );
+    }
+}</code></pre>
+<p>In the browser the app will render but the styling is not correct. The Bootstrap CSS library is missing. Add the import below to <code>src/index.js</code>: </p>
+<pre><code>import &#39;../node_modules/bootstrap/dist/css/bootstrap.css&#39;;</code></pre>
+<p>You should now see the following in the browser:</p>
+<p><img src="./img/HackerUI.png" alt=""></p>
+<p>[The news posts may not be in the above order in your case - we will fix this in a later lab.]</p>
+<p>Commit the work to the Git repository (from the <code>twoApps/hackernews</code> folder) with the commands:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Static version completed&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Solutions">
+            <h2>Solutions.</h2>
+<h4>NewsList component.</h4>
+<pre><code>import React, { Component, Fragment } from &#39;react&#39;;
+import NewsItem from &#39;../newsItem/&#39;;
+
+export default class NewsList extends Component {
+    render() {
+      let items = this.props.posts.map((post, index) =&gt; (
+      &lt;NewsItem
+          key={post.id}
+          post={post}
+      /&gt;
+      ));
+      return &lt;Fragment&gt;{items}&lt;/Fragment&gt;;
+    }
+  }</code></pre>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>
