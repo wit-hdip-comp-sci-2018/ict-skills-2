@@ -119,22 +119,6 @@ html, body {
           HackerNewsApp
         </a>
       
-        <a class="item" data-tab="03">
-          03
-        </a>
-      
-        <a class="item" data-tab="04">
-          04
-        </a>
-      
-        <a class="item" data-tab="05">
-          05
-        </a>
-      
-        <a class="item" data-tab="06">
-          06
-        </a>
-      
     </div>
   </div>
 
@@ -148,77 +132,70 @@ html, body {
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic01/book-1/index.html">Lab-React_Basics </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic01/book-2/index.html">Lab-CRA_tool </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-1/index.html">Lab_React_Data_Flow </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic04/book-1/index.html">Lab-Routing_Contacts </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic04/book-2/index.html">Lab-Routing-Hacker </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
-          
-        
-      
-        
-          
-            <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic05/book-1/index.html">Lab-E2E-Testing </a>
           
         
       
@@ -236,17 +213,19 @@ html, body {
           <div class="ui tab segment lab" data-tab="Startup">
             <h2>Startup.</h2>
 <p>The Cypress framework has already been added to both our lab app - see devdependencies section of <code>package.json</code> in either project folder.</p>
-<p>In <code>twoApps/contactList</code> start the Cypress interactive test runner:</p>
+<h3>Contact List app.</h3>
+<p>In a terminal window, go to <code>twoApps/contactList</code> and start the Cypress interactive test runner:</p>
 <pre><code>$ npx cypress open</code></pre>
 <p>As this is the first time running the tool in this project, Cypress scaffolds some content, including <code>cypress.json</code> (for configuration) and a <code>cypress</code> subfolder (for the test code and other artifacts). </p>
 <p><img src="./img/cypressinit.png" alt=""></p>
-<p>Stop the test runner by typing hitting cntl/c in the terminal window.</p>
+<p>Stop the test runner by hitting cntl/c.</p>
 <p>In <code>contactList/cypress.json</code> add this entry:</p>
 <pre><code>{
     &quot;baseUrl&quot;: &quot;http://localhost:3000/&quot;
 }</code></pre>
 <p>This tells Cypress where our app is being hosted.</p>
 <p>Optional: In <code>contactList/cypress/integration</code> delete the <code>examples</code> folder - it contains sample test specs which can be useful when learning the Cypress API. </p>
+<h3>Hacker News app.</h3>
 <p>In <code>twoApps/hackerNews</code> repeat the above steps - we will use it later.</p>
 
           </div>
@@ -255,7 +234,7 @@ html, body {
             <h2>Contact List App.</h2>
 <p>From <code>twoApps/contactList</code> start the CRA server:</p>
 <pre><code>$ npm start</code></pre>
-<p>Create the file <code>contactList/cypress/integration/main-view.spec.js</code> and paste in this code</p>
+<p>Create the file <code>twoApps/contactList/cypress/integration/main-view.spec.js</code> and paste in this code</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   beforeEach(() =&gt; {
     cy.visit(&quot;/&quot;);
@@ -266,14 +245,18 @@ html, body {
     cy.get(&quot;.card&quot;).should(&quot;have.length&quot;, 50);
   });
 });</code></pre>
-<p>This test simply visits the root URL (localhost:3000/ due to <code>cypress.json</code> ) and then checks that 50 contacts were loaded from the Random Users web API</p>
+<p>This test simply visits the root URL (set to &#39;localhost:3000/&#39; in <code>cypress.json</code> ) and then checks that 50 contacts were loaded from the Random Users web API</p>
 <p>Open a second terminal and from <code>twoApps/contactList</code>, start the interactive test runner:</p>
 <pre><code>$ npx cypress open</code></pre>
-<p>This opens the Cypress Interactive Runner GUI. To run our test click the test file name on the left.</p>
+<p>This opens the Cypress GUI. To run our test click the test file name on the left.</p>
 <p><img src="./img/firsttest.png" alt=""></p>
-<p>Next we will test the delete contact feature. We will target the second contact (index 1) in the list, arbitrarily. As we will be referencing this part of the DOM in many tests, we define some aliases in the beforeEach hook for:
-+ the contact&#39;s card DOM element and 
-+ the card&#39;s two buttons DOM elements (as a collection of elements)</p>
+<p>The test passed (green).</p>
+<p>We will test the delete contact feature next, targeting the second contact (index 1) in the list (arbitrary). Since we will be referencing this part of the DOM in many tests, we define some aliases in the beforeEach hook for:</p>
+<ul>
+<li>the second contact&#39;s card DOM element and </li>
+<li>the second card&#39;s two buttons DOM elements (as a collection of elements)</li>
+</ul>
+<p>Change <code>contactList/cypress/integration/main-view.spec.js</code> as follows:</p>
 <pre><code> beforeEach(() =&gt; {
     cy.visit(&quot;/&quot;);
     cy.get(&quot;.card&quot;).eq(1).as(&quot;targetcard&quot;)
@@ -281,7 +264,7 @@ html, body {
       .find(&quot;button&quot;)
       .as(&quot;cardbuttons&quot;);
   });</code></pre>
-<p>Add the following nested describe block for the delete tests to <code>contactList/cypress/integration/main-view.spec.js</code>:</p>
+<p>Add the following nested describe block for the delete tests to the same file:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   beforeEach(() =&gt; {
      .........
@@ -316,9 +299,11 @@ html, body {
 });</code></pre>
 <p>Cypress works in &#39;watch&#39; mode - it automatically re-runs a test when you save any changes to the file. Try the time-travel aspect of Cypress by clicking a part of the test audit trail to see the state of the app&#39;s UI at that point:</p>
 <p><img src="./img/secondtest.png" alt=""></p>
-<p>For the Edit contact operation we have two test cases as well:
-+ A completed edit task
-+ A cancelled edit task</p>
+<p>For the Edit contact operation we have two test cases as well:</p>
+<ul>
+<li>A completed/saved edit.</li>
+<li>A cancelled edit</li>
+</ul>
 <p>Add the following test code to <code>cypress/integration/main-view.spec.js</code>:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   ..........
@@ -374,14 +359,17 @@ html, body {
     });
   });
 });</code></pre>
-<p>Features to note are:
-+ Testing the CSS attributes (background-color) of a DOM element - we could have applied this test in the Delete operation as well.
-+ Finding a DOM element using an HTML attribute value - [data-icon=envelope]
-+ Getting the text content of a DOM element - invoke(&quot;text&quot;) - in order to use it later in the test. This is one of the small few cases where the asynchronous nature of Cypress coding leaks out, i.e. we neen to imbed the code using the text value inside the then() clause.</p>
+<p>Features to note above are:</p>
+<ul>
+<li>We can test the CSS attributes (background-color) of a DOM element - we could have applied this test in the Delete operation as well.</li>
+<li>We can find a DOM element based on an HTML attribute, e.g. [data-icon=envelope]</li>
+<li>We can get the text content of a DOM element using &#39;invoke(&quot;text&quot;)&#39;. typically we do this in order to use it later in the test. In these cases the asynchronous nature of Cypress coding is exposed, i.e. we need to imbed the code using the text value inside the then() clause.</li>
+</ul>
+<p>Check that all tests are passing.</p>
 <p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
 <pre><code>$ git add -A
 $ git commit -m &quot;E2E tests for delete and edit contact&quot;</code></pre>
-<p>The tests below are for the filtering functionality of the page:</p>
+<p>Now add the tests below for the filtering functionality of the page:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   ..........
   describe(&quot;Edit operation&quot;, () =&gt; {
@@ -414,22 +402,15 @@ $ git commit -m &quot;E2E tests for delete and edit contact&quot;</code></pre>
     });
   });  
 });</code></pre>
-<p>Points to note are:
-+ Many Cypress commands return a collection of matching DOM elements. To iterate over the collection use the each command - cy.get(&quot;.card&quot;).each()
-+ Cypress uses the <a href="https://jquery.com/">JQuery library</a> for many of its underlying DOM querying. For a consistent programming model use cy.wrap() to convert JQuery result objects to Cypress objects.
-+ To compute the length/size of a DOM element collection use the its() command - cy.get(...).its(&#39;length&#39;).
- + Because Cypress code is asynchronous we cannot use standard assignment statements to hold the result of one command and use that value in a subsequent command. Use the then() command instead to force sequencing between commands.</p>
-<pre><code>// This will not work
-let numBoxes = 0 
-// Get all the boxes. Assume their are 20
-cy.get(&#39;.box&#39;).its(&#39;length&#39;).then(len =&gt; num = len)  // num = 20
-cy.(&#39;button&#39;).click() // Add a new box
-cy.get(&#39;.box&#39;).its(&#39;length&#39;).should(&#39;eq&#39;,numBoxes+1) // nium is still 0</code></pre>
-<pre><code>// This will work
-cy.get(&#39;.box&#39;).its(&#39;length&#39;).then( numBoxes =&gt; {
-   cy.(&#39;button&#39;).click()
-   cy.get(&#39;.box&#39;).its(&#39;length&#39;).should(&#39;eq&#39;,numBoxes+1)
-})</code></pre>
+<p>Points to note in this code are:</p>
+<ul>
+<li>Many Cypress commands return a collection of matching DOM elements. To iterate over the collection use the &#39;each&#39; command - cy.get(&quot;.card&quot;).each()</li>
+<li>Cypress uses the <a href="https://jquery.com/">JQuery library</a> for many of its underlying DOM querying. For a consistent programming model use cy.wrap() to convert JQuery result objects to Cypress objects.</li>
+<li>To compute the length/size of a DOM element collection use the its() command - cy.get(...).its(&#39;length&#39;).<ul>
+<li>Because Cypress code is asynchronous we cannot use standard assignment statements to hold the result of one command and use that value in a subsequent command. Use the then() clause to force sequencing between commands.</li>
+</ul>
+</li>
+</ul>
 <p>The final tests relate to navigation - clicking a contact to navigate to their detail page/view. Add the following tests:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   ..........
@@ -452,13 +433,14 @@ cy.get(&#39;.box&#39;).its(&#39;length&#39;).then( numBoxes =&gt; {
     });
   });
 });</code></pre>
-<p>To prove the navigation is working we must get the clicked contact&#39;s phone number from the main page and use it to construct the expected URL. To access the current URL of the browser address bar use cy.url().</p>
-<p>All the tests are now working. During this section every time we edited the test code and saved the changes all the tests were re-executed. Sometimes we want only the test we are currently working on to run. We can use the only() method to achieve this. For example, change the line:</p>
+<p>To prove the navigation is working we must get the clicked contact&#39;s phone number from the main page and use it to construct the expected URL (after clicking the contact image). To access the current URL of the browser address bar use cy.url().</p>
+<p>All the tests are now working. During this section every time we edited the test code and saved the changes all the tests were re-executed. Sometimes we want only the test we are currently working on to run. Use the only() method to achieve this. For example, change the line:</p>
 <pre><code>it(&quot;goes to the correct view&quot;, () =&gt; {</code></pre>
 <p>to this:</p>
 <pre><code>it.only(&quot;goes to the correct view&quot;, () =&gt; {</code></pre>
-<p>Now only the specific test executes.</p>
+<p>Now only the specific test executes. </p>
 <p><img src="./img/thirdtest.png" alt=""></p>
+<p>Undo the above code change.</p>
 <p>Stop the CRA development server and Cypress interactive runner. From the <code>twoApps/contactList</code> folder commit this work:</p>
 <pre><code>$ git add -A
 $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</code></pre>
@@ -482,12 +464,14 @@ $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</co
       .should(&quot;have.length&quot;, 3);
   });
 });</code></pre>
-<p>We are simply testing that the news posts and the web form are displaying when the app loads in the browser. Open a second terminal and from <code>twoApps/hackerNews</code>, start the interactive test runner:</p>
+<p>We are simply testing that the news posts and the web form are displaying when the app loads in the browser. Open a second terminal and from <code>twoApps/hackerNews</code>, start the Cypress interactive test runner:</p>
 <pre><code>$ npx cypress open</code></pre>
-<p>The test should run successfully.</p>
-<p>The upvoting feature has two test cases:
-+ (Default) Increments the upvote count by 1.
-+ Rearranges the order when required.</p>
+<p>In the test runner GUI, click the <code>main-view.spec.js</code> file name onthe left to run it.</p>
+<p>The upvoting feature has two test cases:</p>
+<ul>
+<li>(Default) Increments the upvote count without changing the order of the news items.</li>
+<li>When upvoting changes the order of the items.</li>
+</ul>
 <p>Add the following nested describe block to <code>hackerNews/cypress/integration/main-view.spec.js</code>:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   beforeEach(() =&gt; {
@@ -503,26 +487,23 @@ $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</co
       // Upvote the top/first news item twice, from 20 to 22
       cy.get(&quot;span.ptr&quot;)
         .first()
-        .next()
         .contains(&quot;20&quot;);
       cy.get(&quot;[data-icon=thumbs-up]&quot;)
         .first()
         .click();
       cy.get(&quot;span.ptr&quot;)
         .first()
-        .next()
         .contains(&quot;21&quot;);
       cy.get(&quot;[data-icon=thumbs-up]&quot;)
         .first()
         .click();
       cy.get(&quot;span.ptr&quot;)
         .first()
-        .next()
         .contains(&quot;22&quot;);
     });
 
     it(&quot;recomputes the order of the news items&quot;, () =&gt; {
-      // Upvote the third (index 2) news item until it moves 
+      // Upvote the third (index 2) news item until it moves
       // to 2nd position
       cy.get(&quot;span.newsitem&quot;)
         .eq(2)
@@ -546,14 +527,9 @@ $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</co
 <p>The tests for exercising the web form are as follows:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   ........
-    describe(&quot;Upvoting&quot;, () =&gt; {
+  describe(&quot;Upvoting&quot;, () =&gt; {
       ......
-    }
-      cy.get(&quot;span.newsitem&quot;)
-        .eq(1)
-        .contains(&quot;Microsoft turned down&quot;);
-    });
-  });
+  }
 
   describe.only(&quot;Add news item&quot;, () =&gt; {
     beforeEach(() =&gt; {
@@ -578,306 +554,13 @@ $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</co
     });
   });
 })</code></pre>
-<p>After clicking the submit button we assert that the last en. We also see how to check an attribute of a DOM element, e.g. an anchor tag&#39;s href attribute - .should(&quot;have.attr&quot;, &quot;href&quot;).and(&quot;include&quot;, &quot;<a href="http://www.sample.com/">http://www.sample.com/</a>&quot;). </p>
-<p>Remove the only() clause from the describe block, assuming the tests were successful.</p>
-<p>We will add tests for clicking the Comment hyperlinks in a later lab, after we add authentication logic to the app</p>
+<p>After clicking the submit button we assert that the last news item listed is the one just added. We also see how to check an attribute of a DOM element, e.g. an anchor tag&#39;s href attribute - .should(&quot;have.attr&quot;, &quot;href&quot;).and(&quot;include&quot;, &quot;<a href="http://www.sample.com/">http://www.sample.com/</a>&quot;). </p>
+<p>Note for convenience we used the only clause on the describe block
+- describe.only(.....). Remove it to ensure all tests are still rinning. </p>
+<p>We will add tests for clicking the Comment hyperlinks in a later lab, after we add authentication logic to the app.</p>
 <p>Go to the <code>twoApps/hackerNews</code> folder and commit this work:</p>
 <pre><code>$ git add -A
 $ git commit -m &quot;E2E tests for upvoting and adding news posts&quot;</code></pre>
-
-          </div>
-        
-          <div class="ui tab segment lab" data-tab="03">
-            <h2>Contact List App (Contd.).</h2>
-<h3>PublicProfile component</h3>
-<p>Crete the file <code>src/components/contactPublic/publicProfile.js</code> and add the following:</p>
-<pre><code>import React, { Fragment } from &quot;react&quot;;
-import { capitalize } from &quot;../../util&quot;;
-import &quot;../../fontawesome&quot;;
-import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
-
-export default ({ user }) =&gt; {
-  const address = capitalize(
-    `${user.location.street}, ${user.location.city}, ${user.location.state}`
-  );
-  const dob = user.dob.date.split(&quot;-&quot;);
-  const birthdate = `${dob[2].substr(0, 2)}/${dob[1]}/${dob[0]}  `;
-  return (
-    &lt;Fragment&gt;
-      &lt;h4&gt;
-        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;home&quot;]} /&gt;
-        &lt;span&gt; {address}&lt;/span&gt;
-      &lt;/h4&gt;
-      &lt;h4&gt;
-        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;phone&quot;]} /&gt;
-        &lt;span&gt; {user.phone}&lt;/span&gt;
-      &lt;/h4&gt;
-      &lt;h4&gt;
-        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;envelope&quot;]} /&gt;
-        &lt;span&gt; {user.email}&lt;/span&gt;
-      &lt;/h4&gt;
-      &lt;h4&gt;
-        &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;birthday-cake&quot;]} /&gt;
-        &lt;span&gt; {birthdate}&lt;/span&gt;
-      &lt;/h4&gt;
-    &lt;/Fragment&gt;
-  );
-};</code></pre>
-<p>The expression &#39;( {user} )&#39; at the top is a shorthand for declaring a variable &#39;user&#39; and assigning it to &#39;props.user&#39;.</p>
-<p>In <code>stories/index.js</code> add a new story:</p>
-<pre><code>...... other imports .......
-import PublicProfile from &#39;../src/components/contactPublic/publicProfile&#39;
-
-..... other  stories .....
-storiesOf(&quot;Contact List App/Contact Page/PublicProfile&quot;, module)
-.add(&quot;default&quot;, () =&gt; ( 
-   &lt;PublicProfile user={sample}/&gt;
-));</code></pre>
-<p>Start the storybook server:</p>
-<pre><code>$ npx start-storybook -c .storybook/ -p 9001 -s ./public/</code></pre>
-<p>Test the new story:</p>
-<p><img src="./img/story1.png" alt=""></p>
-<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
-<pre><code>$ git add -A
-$ git commit -m &quot;PublicProfile component completed&quot;</code></pre>
-
-          </div>
-        
-          <div class="ui tab segment lab" data-tab="04">
-            <h2>Contact List App (Contd.).</h2>
-<h3>ContactPrivate component</h3>
-<p>Crete the file <code>src/components/contactPrivate/index.js</code> and add the following:</p>
-<pre><code>import React from &quot;react&quot;;
-import &quot;./contactPrivate.css&quot;;
-import &quot;../../fontawesome&quot;;
-
-export default ({ user }) =&gt; {
-  return (
-    &lt;div className=&quot;row&quot;&gt;
-      &lt;div className=&quot;col-12&quot;&gt;
-        &lt;ul className=&quot;specs&quot;&gt;
-          &lt;li&gt;
-            &lt;span&gt;Login&lt;/span&gt;
-            &lt;dl&gt;
-              &lt;dt&gt;UUID&lt;/dt&gt;
-              &lt;dd&gt;{user.login.uuid}&lt;/dd&gt;
-              &lt;dt&gt;Username&lt;/dt&gt;
-              &lt;dd&gt;{user.login.username}&lt;/dd&gt;
-              &lt;dt&gt;Password&lt;/dt&gt;
-              &lt;dd&gt;{user.login.password}&lt;/dd&gt;
-            &lt;/dl&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;span&gt;Coordinates&lt;/span&gt;
-            &lt;dl&gt;
-              &lt;dt&gt;Longitude&lt;/dt&gt;
-              &lt;dd&gt;{user.location.coordinates.longitude}&lt;/dd&gt;
-              &lt;dt&gt;Latitude&lt;/dt&gt;
-              &lt;dd&gt;{user.location.coordinates.latitude}&lt;/dd&gt;
-            &lt;/dl&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;span&gt;Timezone&lt;/span&gt;
-            &lt;dl&gt;
-              &lt;dt&gt;Offset&lt;/dt&gt;
-              &lt;dd&gt;{user.location.timezone.offset}&lt;/dd&gt;
-              &lt;dt&gt;Description&lt;/dt&gt;
-              &lt;dd&gt;{user.location.timezone.description}&lt;/dd&gt;
-            &lt;/dl&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;span&gt;Registered&lt;/span&gt;
-            &lt;dl&gt;
-              &lt;dt&gt;Date&lt;/dt&gt;
-              &lt;dd&gt;{user.registered.date}&lt;/dd&gt;
-              &lt;dt&gt;Age&lt;/dt&gt;
-              &lt;dd&gt;{user.registered.age}&lt;/dd&gt;
-            &lt;/dl&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-};</code></pre>
-<p>Create an associated CSS file named <code>src/components/contactPrivate/contactPrivate.css</code> and add the following:</p>
-<pre><code>ul.specs {
-    clear: both;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  ul.specs &gt; li{
-    display: inline-block;
-    width: 200px;
-    vertical-align: top;
-  }
-
-  ul.specs &gt; li &gt; span{
-    font-weight: bold;
-    font-size: 1.2em;
-  }</code></pre>
-<p>In <code>stories/index.js</code> add a new story:</p>
-<pre><code>...... other imports .......
-import ContactPrivateDetails from &#39;../src/components/contactPrivate/&#39;
-
-..... other  stories .....
-storiesOf(&quot;Contact List App/Contact Page/ContactPrivate&quot;, module)
-.add(&quot;default&quot;, () =&gt; ( 
-   &lt;ContactPrivateDetails user={sample}/&gt;
-));</code></pre>
-<p>Test the new story:</p>
-<p><img src="./img/story2.png" alt=""></p>
-<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
-<pre><code>$ git add -A
-$ git commit -m &quot;ContactPrivate components completed&quot;</code></pre>
-
-          </div>
-        
-          <div class="ui tab segment lab" data-tab="05">
-            <h2>Contact List App (Contd.).</h2>
-<h3>ContactPublic component.</h3>
-<p>Create the file <code>src/components/contactPublic/index.js</code> and paste in the following:</p>
-<pre><code>import React, { Fragment } from &quot;react&quot;;
-import { capitalize } from &quot;../../util&quot;;
-import &quot;../../fontawesome&quot;;
-import { FontAwesomeIcon } from &quot;@fortawesome/react-fontawesome&quot;;
-import &quot;./contactPublic.css&quot;;
-import { Link } from &quot;react-router-dom&quot;;
-import PublicProfile from &quot;../contactPublic/publicProfile&quot;
-
-export default ({ user }) =&gt; {
-  const name = capitalize(`${user.name.first} ${user.name.last}`);
-  return (
-    &lt;Fragment&gt;
-      &lt;div className=&quot;row&quot;&gt;
-      &lt;div className=&quot;col-2&quot;&gt;
-        &lt;Link to=&quot;/&quot;&gt;
-          &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;arrow-circle-left&quot;]} size=&quot;3x&quot; /&gt;
-          &lt;span&gt;Back&lt;/span&gt;
-        &lt;/Link&gt;
-        &lt;/div&gt;
-        &lt;div className=&quot;col-3 offset-2&quot;&gt;
-          &lt;h2&gt;{name}&lt;/h2&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div className=&quot;row&quot;&gt;
-        &lt;div className=&quot;col-3&quot;&gt;
-          &lt;img src={user.picture.large} className=&quot;contact&quot; alt={name} /&gt;
-        &lt;/div&gt;
-        &lt;div className=&quot;col-4&quot;&gt;
-          &lt;PublicProfile user={user} /&gt;
-        &lt;/div&gt;
-        &lt;div className=&quot;col-5 bg-secondary text-light&quot;&gt;
-           &lt;span&gt;Map placeholder&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/Fragment&gt;
-  );
-};</code></pre>
-<p>In truth this component is quite large and could be subdivided into smaller sub-components. Also, the Google Map section will be covered in a later lab.</p>
-<p>Crete an associated CSS file <code>src/components/contactPublic/contactPublic.css</code>:</p>
-<pre><code>img.contact {
-    float: left;
-    border: 1px solid black;
-    margin-bottom: 2em;
-    background-color: gold;
-    padding: 1em;
-    width: 100%;
-  }
-
-  .row {
-    margin-bottom: 10px;
-  }</code></pre>
-<p>As an exercise you could write a story for this component.</p>
-<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
-<pre><code>$ git add -A
-$ git commit -m &quot;ContactPublic components implemented&quot;</code></pre>
-<h3>Storybook addons.</h3>
-<p>The Contact component above expects a function prop. Storybook can accommodate this by providing a stub replacement, using an &#39;addon&#39; to implement the stub.  Add the following line to the configuration file <code>.storybook/addons.js</code>:</p>
-<pre><code>import &#39;@storybook/addon-actions/register&#39;;</code></pre>
-<p> [See devDependencies section in <code>package.json</code>.]</p>
-<p> In <code>stories/index.js</code> add a new import at the top:</p>
-<pre><code>import { action } from &#39;@storybook/addon-actions&#39;;</code></pre>
-<p>and update the related story:</p>
-<pre><code>storiesOf(&quot;Contact List App/Contact&quot;, module).add(&quot;default&quot;, () =&gt; ( 
-        &lt;Contact contact={sample} deleteHandler={action(&#39;Delete confirmed&#39;) }/&gt;
-));</code></pre>
-<p>We are passing a dummy function (or action ) to the component. The dummy will simply display a message when invoked.  Start the Storybook server, select the Contact component, click the Delete button, followed by the Confirm:</p>
-<p><img src="./img/delete.png" alt=""></p>
-<p>Stop Storybook and start the CRA development server (npm start). Delete a contact and notice the Header badge is decremented. When a delete is confirmed, the Contact component calls the App component which in turn calls the stub API to delete the record fron the contacts array. App then calls <em>setState()</em> which causes the <em>render()</em> method to execute. In render we call <em>api.getAll()</em> which returns the updated array and renders it.</p>
-<p>Commit these changes to git:</p>
-<pre><code>$ git add -A
-$ git commit -m &quot;Updated Storybook for Delete&quot;</code></pre>
-<p>[ The re-rendering by the App component does lead to some unnecessary re-rendering by the individual Contact components. We will remove this unnecessary execution later.]</p>
-
-          </div>
-        
-          <div class="ui tab segment lab" data-tab="06">
-            <h2>Contact List App (Contd.).</h2>
-<h3>Assemble the page,</h3>
-<p>Replace the content of <code>src/components/contactPage.js</code> with the following:</p>
-<pre><code>import React, { Fragment } from &quot;react&quot;;
-import { withRouter } from &quot;react-router-dom&quot;;
-import api from &quot;../dataStore/stubAPI&quot;; // NEW
-import ContactPublic from &quot;../components/contactPublic/&quot;;
-import ContactPrivate from &quot;../components/contactPrivate/&quot;;
-
-const ContactPage = props =&gt; {
-  const { id } = props.match.params;
-  const contact = api.find(id);
-  return (
-    &lt;Fragment&gt;
-      {contact ? (
-        &lt;Fragment&gt;
-          &lt;ContactPublic user={contact} /&gt;           
-          &lt;ContactPrivate user={contact} /&gt;
-        &lt;/Fragment&gt;
-      ) : (
-        &lt;p&gt;Waiting for contact details&lt;/p&gt;
-      )}
-    &lt;/Fragment&gt;
-  );
-};
-
-export default withRouter(ContactPage);</code></pre>
-<p>Start the development server (npm start) and click on any contact in the main view to see the new contact page.</p>
-<p><img src="./img/nomap.png" alt=""></p>
-<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
-<pre><code> $ git add -A
- $ git commit -m &quot;Contact page without Map working&quot;</code></pre>
-<p>To demonstrate nested routes, suppose the &#39;private data&#39; for a contact is displayed only when the browser URL is: </p>
-<blockquote>
-<p>&#39;<a href="http://localhost:3000/contacts/:id/private">http://localhost:3000/contacts/:id/private</a>&#39; - the /private is an extension to the normal URL for the ContactPage view.</p>
-</blockquote>
-<p>The UI for the Cintact Page will now look as follows:</p>
-<p><img src="./img/link.png" alt=""></p>
-<p>On clicking the &#39;See Private Data&#39; button, the URL will change and the additional private data will display - in practice a user might be required to authenticate after clicking the button. </p>
-<p>In <code>components/contactPage.js</code> include Link in the current react-router import:</p>
-<pre><code>import { withRouter, Route, Link } from &quot;react-router-dom&quot;;</code></pre>
-<p>Now change the return statement of the render method as follows:</p>
-<pre><code> return (
-    &lt;Fragment&gt;
-      {contact ? (
-        &lt;Fragment&gt;
-          &lt;ContactPublic user={contact} /&gt; 
-           {!props.history.location.pathname.endsWith(&quot;/private&quot;) &amp;&amp; (
-            &lt;Link class=&quot;btn btn-primary active&quot; to={`/contacts/${id}/private`}&gt;See Private Data&lt;/Link&gt;
-          )}
-          &lt;Route path={`/contacts/:id/private`} 
-              render={ (props) =&gt; &lt;ContactPrivate {...props} user={contact} /&gt; } /&gt;
-
-        &lt;/Fragment&gt;
-      ) : (
-        &lt;p&gt;Waiting for contact details&lt;/p&gt;
-      )}
-    &lt;/Fragment&gt;
-  );</code></pre>
-<p>The new &#39;See Private Data&#39; button display is conditional on the current browser URL (props.history.location.pathname), i.e. display the buttom when the URL does NOT end with &#39;/private&#39;. </p>
-<p>Test this new behaviour in the browser. </p>
-<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
-<pre><code>$ git add -A
-$ git commit -m &quot;Added nested route for provate data&quot;</code></pre>
 
           </div>
         

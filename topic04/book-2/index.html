@@ -136,77 +136,70 @@ html, body {
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-1/index.html">Lab-React_Basics </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic01/book-1/index.html">Lab-React_Basics </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic01/book-2/index.html">Lab-CRA_tool </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic01/book-2/index.html">Lab-CRA_tool </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-1/index.html">Lab_React_Data_Flow </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic04/book-1/index.html">Lab-Routing_Contacts </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic04/book-2/index.html">Lab-Routing-Hacker </a>
           
         
       
         
           
             <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-1/index.html">Lab-E2E-Testing </a>
-          
-        
-      
-        
-          
-            <a class="item"
-               href="https://wit-computing.github.io/enterprise-web-2019//topic05/book-2/index.html">Lab-Routing-2 </a>
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic05/book-1/index.html">Lab-E2E-Testing </a>
           
         
       
@@ -334,8 +327,8 @@ export default class Comment extends Component {
       &lt;Fragment&gt;
         &lt;span className=&quot; ptr&quot; onClick={this.handleVote}&gt;
           &lt;FontAwesomeIcon icon={[&quot;fas&quot;, &quot;thumbs-up&quot;]} size=&quot;2x&quot; /&gt;
+          {` ${this.props.comment.upvotes}`}
         &lt;/span&gt;
-        {` ${this.props.comment.upvotes}`}
         &lt;span className=&quot;commentitem&quot;&gt;
           {`${this.props.comment.comment} (by ${this.props.comment.author})`}
         &lt;/span&gt;
