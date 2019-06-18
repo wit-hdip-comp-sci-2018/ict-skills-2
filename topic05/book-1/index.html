@@ -212,7 +212,7 @@ html, body {
         
           <div class="ui tab segment lab" data-tab="Startup">
             <h2>Startup.</h2>
-<p>The Cypress framework has already been added to both our lab app - see devdependencies section of <code>package.json</code> in either project folder.</p>
+<p>The Cypress framework has already been added to both our lab apps - see devdependencies section of <code>package.json</code> in either project folder.</p>
 <h3>Contact List app.</h3>
 <p>In a terminal window, go to <code>twoApps/contactList</code> and start the Cypress interactive test runner:</p>
 <pre><code>$ npx cypress open</code></pre>
@@ -224,9 +224,9 @@ html, body {
     &quot;baseUrl&quot;: &quot;http://localhost:3000/&quot;
 }</code></pre>
 <p>This tells Cypress where our app is being hosted.</p>
-<p>Optional: In <code>contactList/cypress/integration</code> delete the <code>examples</code> folder - it contains sample test specs which can be useful when learning the Cypress API. </p>
+<p>Optional: In <code>contactList/cypress/integration</code>, delete the <code>examples</code> folder - it contains sample test specs which can be useful when learning the Cypress API. </p>
 <h3>Hacker News app.</h3>
-<p>In <code>twoApps/hackerNews</code> repeat the above steps - we will use it later.</p>
+<p>In <code>twoApps/hackerNews</code>, repeat the above steps - we will need it later.</p>
 
           </div>
         
@@ -246,15 +246,15 @@ html, body {
   });
 });</code></pre>
 <p>This test simply visits the root URL (set to &#39;localhost:3000/&#39; in <code>cypress.json</code> ) and then checks that 50 contacts were loaded from the Random Users web API</p>
-<p>Open a second terminal and from <code>twoApps/contactList</code>, start the interactive test runner:</p>
+<p>Open a second terminal and from <code>twoApps/contactList</code> enter:</p>
 <pre><code>$ npx cypress open</code></pre>
 <p>This opens the Cypress GUI. To run our test click the test file name on the left.</p>
 <p><img src="./img/firsttest.png" alt=""></p>
 <p>The test passed (green).</p>
-<p>We will test the delete contact feature next, targeting the second contact (index 1) in the list (arbitrary). Since we will be referencing this part of the DOM in many tests, we define some aliases in the beforeEach hook for:</p>
+<p>We will test the delete contact feature next, targeting, say, the second contact (index 1) in the list. Because we will be referencing this part of the DOM in a few tests, we can define some aliases in the beforeEach hook for:</p>
 <ul>
-<li>the second contact&#39;s card DOM element and </li>
-<li>the second card&#39;s two buttons DOM elements (as a collection of elements)</li>
+<li>The second contact card DOM element (targetcard) and </li>
+<li>The two buttons (as a collection of elements) for the same card (cardbuttons).</li>
 </ul>
 <p>Change <code>contactList/cypress/integration/main-view.spec.js</code> as follows:</p>
 <pre><code> beforeEach(() =&gt; {
@@ -264,6 +264,7 @@ html, body {
       .find(&quot;button&quot;)
       .as(&quot;cardbuttons&quot;);
   });</code></pre>
+<p>&#39;cy.get(&quot;.card&quot;)&#39; returns a collection of DOM ekements; &#39;eq(1)&#39; picks the second element in the collection.</p>
 <p>Add the following nested describe block for the delete tests to the same file:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   beforeEach(() =&gt; {
@@ -297,7 +298,9 @@ html, body {
     });
   });
 });</code></pre>
-<p>Cypress works in &#39;watch&#39; mode - it automatically re-runs a test when you save any changes to the file. Try the time-travel aspect of Cypress by clicking a part of the test audit trail to see the state of the app&#39;s UI at that point:</p>
+<p>&#39;cy.get(&quot;@cardbuttons&quot;)&#39; returns the two buttons and &#39;contains(&quot;Delete&quot;)&#39; references the DOM element (button) with the text &#39;Delete&#39;.</p>
+<p>Cypress works in &#39;watch&#39; mode - it automatically re-runs a test when you save any changes to the file.  Check that the full set of tests did execute.</p>
+<p>Try the time-travel aspect of Cypress by clicking a part of the test audit trail to see the state of the app&#39;s UI at that point:</p>
 <p><img src="./img/secondtest.png" alt=""></p>
 <p>For the Edit contact operation we have two test cases as well:</p>
 <ul>
@@ -361,15 +364,17 @@ html, body {
 });</code></pre>
 <p>Features to note above are:</p>
 <ul>
-<li>We can test the CSS attributes (background-color) of a DOM element - we could have applied this test in the Delete operation as well.</li>
-<li>We can find a DOM element based on an HTML attribute, e.g. [data-icon=envelope]</li>
-<li>We can get the text content of a DOM element using &#39;invoke(&quot;text&quot;)&#39;. typically we do this in order to use it later in the test. In these cases the asynchronous nature of Cypress coding is exposed, i.e. we need to imbed the code using the text value inside the then() clause.</li>
+<li>We can test the CSS attributes (e.g. background-color) of a DOM element - we could have applied this test in the Delete operation as well. [RGBA color values are an extension of RGB color values with an alpha channel - which specifies the opacity of the color.]</li>
+<li>The &#39;next()&#39; command gets the immediately following sibling of each DOM element within a set of DOM elements.</li>
+<li>We can find a DOM element based on an HTML attribute, e.g. .find([&quot;data-icon=envelope]&quot;)</li>
+<li>To get the text content of a DOM element use &#39;invoke(&quot;text&quot;)&#39;. </li>
 </ul>
-<p>Check that all tests are passing.</p>
+<p>Because Cypress code is asynchronous in nature we cannot use standard assignment statements to hold the result of one command chain and use that value in a subsequent command chain (the dependent chain). Instead we imbed the dependent chain inside the &#39;then()&#39; command and feed the result of the first command chain into the imbedded code. This pattern is used in the second test above for checking that the email address is reset to its initial value when the Cancel button is clicked.</p>
+<p>Check that all tests are still passing.</p>
 <p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
 <pre><code>$ git add -A
 $ git commit -m &quot;E2E tests for delete and edit contact&quot;</code></pre>
-<p>Now add the tests below for the filtering functionality of the page:</p>
+<p>Now add the tests below for the filtering functionality:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   ..........
   describe(&quot;Edit operation&quot;, () =&gt; {
@@ -404,10 +409,10 @@ $ git commit -m &quot;E2E tests for delete and edit contact&quot;</code></pre>
 });</code></pre>
 <p>Points to note in this code are:</p>
 <ul>
-<li>Many Cypress commands return a collection of matching DOM elements. To iterate over the collection use the &#39;each&#39; command - cy.get(&quot;.card&quot;).each()</li>
+<li>Many Cypress commands return a collection of matching DOM elements. To iterate over the collection use the &#39;each()&#39; command - cy.get(&quot;.card&quot;).each().</li>
 <li>Cypress uses the <a href="https://jquery.com/">JQuery library</a> for many of its underlying DOM querying. For a consistent programming model use cy.wrap() to convert JQuery result objects to Cypress objects.</li>
 <li>To compute the length/size of a DOM element collection use the its() command - cy.get(...).its(&#39;length&#39;).<ul>
-<li>Because Cypress code is asynchronous we cannot use standard assignment statements to hold the result of one command and use that value in a subsequent command. Use the then() clause to force sequencing between commands.</li>
+<li>The &#39;then()&#39; command is used again above because the assertion on the number of male contacts is dependent on the command chain that computes the number of female contacts.</li>
 </ul>
 </li>
 </ul>
@@ -433,8 +438,8 @@ $ git commit -m &quot;E2E tests for delete and edit contact&quot;</code></pre>
     });
   });
 });</code></pre>
-<p>To prove the navigation is working we must get the clicked contact&#39;s phone number from the main page and use it to construct the expected URL (after clicking the contact image). To access the current URL of the browser address bar use cy.url().</p>
-<p>All the tests are now working. During this section every time we edited the test code and saved the changes all the tests were re-executed. Sometimes we want only the test we are currently working on to run. Use the only() method to achieve this. For example, change the line:</p>
+<p>To prove the navigation is working we must get the clicked contact&#39;s phone number from the main page and use it to construct the expected URL after clicking the contact image. To access the current URL of the browser address bar use cy.url().</p>
+<p>During this section every time we edited the test code and ALL the tests were re-executed. Sometimes we want only the test we are currently working on to run. Use the Mocha only() method to achieve this. For example, change the line:</p>
 <pre><code>it(&quot;goes to the correct view&quot;, () =&gt; {</code></pre>
 <p>to this:</p>
 <pre><code>it.only(&quot;goes to the correct view&quot;, () =&gt; {</code></pre>
@@ -466,11 +471,11 @@ $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</co
 });</code></pre>
 <p>We are simply testing that the news posts and the web form are displaying when the app loads in the browser. Open a second terminal and from <code>twoApps/hackerNews</code>, start the Cypress interactive test runner:</p>
 <pre><code>$ npx cypress open</code></pre>
-<p>In the test runner GUI, click the <code>main-view.spec.js</code> file name onthe left to run it.</p>
+<p>In the test runner GUI, click the <code>main-view.spec.js</code> file name to run it.</p>
 <p>The upvoting feature has two test cases:</p>
 <ul>
 <li>(Default) Increments the upvote count without changing the order of the news items.</li>
-<li>When upvoting changes the order of the items.</li>
+<li>When an upvote changes the order of the items.</li>
 </ul>
 <p>Add the following nested describe block to <code>hackerNews/cypress/integration/main-view.spec.js</code>:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
@@ -523,7 +528,7 @@ $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</co
     });
   });
 });</code></pre>
-<p>Check the tests are successful.</p>
+<p>Check the tests are passing.</p>
 <p>The tests for exercising the web form are as follows:</p>
 <pre><code>describe(&quot;Main View &quot;, () =&gt; {
   ........
@@ -555,8 +560,7 @@ $ git commit -m &quot;E2E tests for filtering and  and main navigation&quot;</co
   });
 })</code></pre>
 <p>After clicking the submit button we assert that the last news item listed is the one just added. We also see how to check an attribute of a DOM element, e.g. an anchor tag&#39;s href attribute - .should(&quot;have.attr&quot;, &quot;href&quot;).and(&quot;include&quot;, &quot;<a href="http://www.sample.com/">http://www.sample.com/</a>&quot;). </p>
-<p>Note for convenience we used the only clause on the describe block
-- describe.only(.....). Remove it to ensure all tests are still rinning. </p>
+<p>Note for convenience we used the only() method on the describe block to speed up test execution. Now remove it (describe(......)) to ensure all tests are still passing. </p>
 <p>We will add tests for clicking the Comment hyperlinks in a later lab, after we add authentication logic to the app.</p>
 <p>Go to the <code>twoApps/hackerNews</code> folder and commit this work:</p>
 <pre><code>$ git add -A
