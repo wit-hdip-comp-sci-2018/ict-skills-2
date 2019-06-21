@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
+  </head>
+
+  
+  
+
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  React Design Patterns.  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Lab-Finishing-Touches">
+          Lab-Finishing-Touches
+        </a>
+      
+        <a class="item" data-tab="HackerNewsApp">
+          HackerNewsApp
+        </a>
+      
+        <a class="item" data-tab="ContactsApp">
+          ContactsApp
+        </a>
+      
+        <a class="item" data-tab="Startup">
+          Startup
+        </a>
+      
+    </div>
+  </div>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic01/book-1/index.html">Lab-React_Basics </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic01/book-2/index.html">Lab-CRA_tool </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-1/index.html">Lab_React_Data_Flow </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-2/index.html">Lab_Static_React_Apps-1 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic02/book-3/index.html">Lab_Static_React_Apps-2 </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic03/book-1/index.html">Lab-Interactive_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic03/book-2/index.html">Lab-Interactive_Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic04/book-1/index.html">Lab-Routing_Contacts </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic04/book-2/index.html">Lab-Routing-Hacker </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic05/book-1/index.html">Lab-E2E-Testing </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="http://wit-hdip-comp-sci-2018.github.io/ict-skills-2//topic06/book-1/index.html">Lab-Finishing-Touches </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Lab-Finishing-Touches">
+            <h1>Finishing touches.</h1>
+<p>In this lab we add some final features to the two lab apps. For the Hacker news app we stitch in authentication so that only logged-in users can add comments to a news item. For the Contacts app a Google Map is added to a contact&#39;s detail view.</p>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="HackerNewsApp">
+            <h2>Hacker News App.</h2>
+<p>We will add authentication to this app so that the Comments view is protected. Authentication will be based on JWT web tokens. A mock authentication server will provide the necessary backend to test the functionality of the client-side. </p>
+<p>The app header be changed to look as follows:</p>
+<p><img src="./img/mainview.png" alt=""></p>
+<h3>Authentication.</h3>
+<p>aFrom <code>twoApps/hackerNews</code>, dd the axios module to the project:</p>
+<pre><code>$ npm install --save  axios@0.18.0</code></pre>
+<p>We will encapsulate the authentication logic in a separate utility class. Create the file <code>hackerNews/src/util/authentication.js</code> and copy this code:</p>
+<pre><code>import axios from &quot;axios&quot;;
+
+class Authentication {
+    constructor() {
+      this.isAuthenticated = false
+      this.token = undefined
+      this.username = undefined
+      this.error = undefined
+    }
+
+    authenticate(username, password, cb, errorcb) {
+      axios
+        .post(&quot;http://localhost:8085/auth&quot;, {
+          identifier: username,
+          password: password
+        })
+        .then(res =&gt; {
+          this.isAuthenticated = true;
+          this.token = res.data.token;
+          this.username = username;
+          this.error = undefined;
+          cb();
+        })
+        .catch(err =&gt; {
+          this.error = err.response.status;
+          errorcb();
+        });
+    }
+
+    signout(cb) {
+      this.isAuthenticated = false;
+      this.username = undefined;
+      this.tolen = undefined;
+      this.error = undefined;
+      cb();
+    }  
+
+}
+
+export default new Authentication();</code></pre>
+<p>The authenticate method above makes a HTTP POST request to our mock authentication server (see later). If the user is authenticated, it stores their username and token locally until the user logs out (the signout method). The app does not actually use the token subsequently as the server does not provide a RESTful service in our case. </p>
+<p>Create the file <code>hackerNews/src/components/authentication/authButton.js</code> and paste in the following: </p>
+<pre><code>import Authentication from &quot;../../util/authentication&quot;;
+import React, { Fragment } from &quot;react&quot;;
+import { withRouter } from &quot;react-router-dom&quot;;
+
+const AuthButton = props =&gt; {
+  const { history } = props;
+  return Authentication.isAuthenticated ? (
+    &lt;Fragment&gt;
+      {`${Authentication.username} `}
+      &lt;button
+        onClick={() =&gt; {
+          Authentication.signout(() =&gt; history.push(&quot;/&quot;));
+        }}
+      &gt;
+        Sign out
+      &lt;/button&gt;
+    &lt;/Fragment&gt;
+  ) : (
+    &lt;button
+      onClick={() =&gt; {
+        history.push(&quot;/login&quot;);
+      }}
+    &gt;
+      Login
+    &lt;/button&gt;
+  );
+};
+
+export default withRouter(AuthButton);</code></pre>
+<p>This component will either display a Login button or a Signout button depending on the user&#39;s authentication status. The Signout button onClick handler calls the utility signout() method with a callback function that forces a redirection to the home page. The Login button onClick handler simply programmatically navigates to the Login page.</p>
+<p>Create the file <code>src/components/header/index.js</code> and paste in the following:</p>
+<pre><code>import React from &quot;react&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+import AuthButton from &quot;../authentication/authButton&quot;;
+
+const Header = () =&gt; (
+  &lt;nav className=&quot;navbar  navbar-light fixed-top  bg-primary &quot;&gt;
+    &lt;Link className=&quot;navbar-brand text-white&quot; to=&quot;/&quot;&gt;
+      Hacker News
+    &lt;/Link&gt;
+    &lt;span className=&quot;navbar-text text-light&quot;&gt;For the stories that matter!&lt;/span&gt;
+    &lt;ul className=&quot;navbar-nav&quot;&gt;
+      &lt;li className=&quot;nav-item&quot;&gt;
+        &lt;AuthButton /&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+);
+
+export default Header;</code></pre>
+<p>Add a story to <code>stories/index.js</code> for the Header component:</p>
+<pre><code>..... other imports ......
+import Header from &quot;../src/components/header/&quot;;
+import { MemoryRouter } from &quot;react-router&quot;;
+
+..... other stories ......
+storiesOf(&quot;Hacker App/Header&quot;, module)
+  .addDecorator(story =&gt; (
+    &lt;MemoryRouter initialEntries={[&quot;/&quot;]}&gt;{story()}&lt;/MemoryRouter&gt;
+  ))
+  .add(&quot;default&quot;, () =&gt; &lt;Header /&gt;);</code></pre>
+<p>Start the storybook server and test the Header component:</p>
+<p><img src="./img/headstory.png" alt=""></p>
+<hr>
+<h4>Bug Fix.</h4>
+<p>In <code>stories/index.js</code> the NewsItam and NewsList stories must be decorated with MemoryRouter due to their use of the Link component.</p>
+<pre><code>storiesOf(&quot;Hacker App/News Item&quot;, module)
+.addDecorator(story =&gt; (
+  &lt;MemoryRouter initialEntries={[&quot;/&quot;]}&gt;{story()}&lt;/MemoryRouter&gt;
+))
+  .add(&quot;default&quot;, () =&gt; {
+    .............
+  }
+
+storiesOf(&quot;Hacker App/News List&quot;, module)
+.addDecorator(story =&gt; (
+  &lt;MemoryRouter initialEntries={[&quot;/&quot;]}&gt;{story()}&lt;/MemoryRouter&gt;
+))
+.add(&quot;default&quot;, () =&gt; {
+  ..........
+}</code></pre>
+<hr>
+<p>Create the file <code>src/components/authentication/loginForm.js</code> and paste in the following:</p>
+<pre><code>import React, { Component } from &quot;react&quot;;
+import Authentication from &quot;../../util/authentication&quot;;
+import { withRouter, Redirect } from &quot;react-router-dom&quot;;
+
+class Login extends Component {
+  state = {
+    redirectToReferrer: false,
+    username: &quot;&quot;,
+    password: &quot;&quot;
+  };
+
+  handleChange = e =&gt; {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = e =&gt; {
+    e.preventDefault();
+    Authentication.authenticate(this.state.username, this.state.password, 
+      () =&gt; {
+      this.setState({ redirectToReferrer: true , username: &#39;&#39;, password: &#39;&#39;});
+    },
+    () =&gt; {
+      this.setState({ redirectToReferrer: false, password: &#39;&#39;});
+    }    
+    );
+  };
+
+  render() {
+    const { redirectToReferrer } = this.state;
+    const { from } = this.props.location.state || { from: { pathname: &quot;/&quot; } };
+    if (redirectToReferrer === true) {
+      return &lt;Redirect to={from} /&gt;;
+    }
+    return (
+      &lt;div className=&quot;row&quot;&gt;
+        &lt;div className=&quot;col-md-4 offset-3&quot;&gt;
+          {Authentication.error === 401 ? &lt;p&gt;Invalid username/password&lt;/p&gt; : &lt;p&gt;&lt;/p&gt;}
+          &lt;form style={{ marginTop: &quot;30px&quot; }}&gt;
+            &lt;h3&gt;Login&lt;/h3&gt;
+
+            &lt;div className=&quot;form-group&quot;&gt;
+              &lt;input
+                type=&quot;text&quot;
+                className=&quot;form-control&quot;
+                placeholder=&quot;Username&quot;
+                name=&quot;username&quot;
+                value={this.state.username}
+                onChange={this.handleChange}
+              /&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;form-group&quot;&gt;
+              &lt;input
+                type=&quot;password&quot;
+                className=&quot;form-control&quot;
+                placeholder=&quot;Password&quot;
+                name=&quot;password&quot;
+                value={this.state.password}
+                onChange={this.handleChange}
+              /&gt;
+            &lt;/div&gt;
+            &lt;button
+              type=&quot;submit&quot;
+              className=&quot;btn btn-primary&quot;
+              onClick={this.onSubmit}
+            &gt;
+              Submit
+            &lt;/button&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default withRouter(Login);</code></pre>
+<p>Although  a &#39;standard&#39; login form, the code has a number of features:</p>
+<ul>
+<li>The onSubmit method calls the utility authenticate method with two callback: the first is for a successful authentication and the second is when authentication fails.</li>
+<li>The redirectToReferrer and from variable control where the app redirects to after a successful login:<ul>
+<li>To the home page if the user navigated to the Login page by clicking the Login button.</li>
+<li>To the protected page the user tried to access before being redirected to the Login page. </li>
+</ul>
+</li>
+<li>CSS can be inlined in JSX using the style attribute, e.g.  style={{ marginTop: &quot;30px&quot; }}. Their are subtle syntax differences between pure CSS and this inlined style. </li>
+</ul>
+<p>Add a story to <code>stories/index.js</code> for this component:</p>
+<pre><code>..... other imports ......
+import LoginForm from &quot;../src/components/authentication/loginForm&quot;;
+
+..... other stories ......
+storiesOf(&quot;Hacker App/Login Form&quot;, module)
+  .addDecorator(story =&gt; (
+    &lt;MemoryRouter initialEntries={[&quot;/&quot;]}&gt;{story()}&lt;/MemoryRouter&gt;
+  ))
+  .add(&quot;default&quot;, () =&gt; (
+    &lt;LoginForm /&gt;
+  ));</code></pre>
+<p>Check the component in Storybook.</p>
+<p>To integrate these components into the app, update <code>src/index.js</code> as follows:</p>
+<pre><code>...... other imports .......
+import Header from &quot;./components/header/&quot;;
+import LoginForm from &quot;./components/authentication/loginForm&quot;;
+
+const Router = () =&gt; 
+    &lt;BrowserRouter&gt;
+      &lt;div className=&quot;jumbotron&quot;&gt;
+        &lt;Header /&gt;
+        &lt;div className=&quot;container-fluid&quot;&gt;
+          &lt;Switch&gt;
+            &lt;Route path=&quot;/posts/:post_id&quot; component={CommentPage} /&gt;
+            &lt;Route path=&quot;/login&quot; component={LoginForm} /&gt;  {/* New route */}
+            &lt;Route exact path=&quot;/&quot; component={App} /&gt;
+            &lt;Redirect from=&quot;*&quot; to=&quot;/&quot; /&gt;
+          &lt;/Switch&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/BrowserRouter&gt;
+
+ReactDOM.render(&lt;Router /&gt;, document.getElementById(&quot;root&quot;));</code></pre>
+<p>To exercise the login functionality we will use a mock JWT-based authentication backend. Create a new folder <code>mockJwt</code> somewhere AWAY FROM the <code>twoApps</code> folder and from their type the following command:</p>
+<pre><code>$ git clone https://github.com/alex-c/mock-auth-backend</code></pre>
+<p>Go to <code>mockJwt/mock-auth-backend</code> and start the server:</p>
+<pre><code>$ node index.js</code></pre>
+<p>The mock auth server has two default accounts configured in <code>mockJwt/mock-auth-backend/accounts.json</code> - modify them or add others if you wish and restart the server.</p>
+<p>Open a second terminal at <code>twoApps/hackerNews</code> and start the CRA development server (npm start). In the browser, click the login button and login as:</p>
+<pre><code>Username: a@b.com
+Password: test</code></pre>
+<p>The main view now indicates the user is logged-in.</p>
+<p><img src="./img/login.png" alt=""></p>
+<p>Click the Sign Out button before continuing.</p>
+<p>We should add some Cypress tests for this functionality. Create the file <code>hackerNews/cypress/integration/authentication.spec.js</code> and paste in this code:</p>
+<pre><code>describe(&quot;User Authentication&quot;, () =&gt; {in the following
+  beforeEach(() =&gt; {
+    cy.visit(&quot;/&quot;);
+  });
+  it(&quot;Logs in a valid user&quot;, () =&gt; {
+    cy.get(&quot;button&quot;)
+      .contains(&quot;Login&quot;)
+      .click();
+    cy.url().should(&quot;include&quot;, &quot;/login&quot;);
+    cy.get(&quot;input[name=username]&quot;)
+      .clear()
+      .type(&quot;a@b.com&quot;);
+    cy.get(&quot;input[name=password]&quot;)
+      .clear()
+      .type(&quot;test&quot;);
+    cy.get(&quot;button[type=submit]&quot;).click();
+    cy.url().should(&quot;not.include&quot;, &quot;/login&quot;);
+    cy.get(&quot;nav&quot;)
+      .find(&quot;ul&quot;)
+      .contains(&quot;a@b.com&quot;);
+    cy.get(&quot;nav&quot;)
+      .find(&quot;ul&quot;)
+      .find(&quot;button&quot;)
+      .contains(&quot;Sign out&quot;);
+  });
+
+  it(&quot;Rejects an invalid user&quot;, () =&gt; {
+    cy.get(&quot;button&quot;)
+      .contains(&quot;Login&quot;)
+      .click();
+    cy.get(&quot;input[name=username]&quot;)
+      .clear()
+      .type(&quot;invalid@b.com&quot;);
+    cy.get(&quot;input[name=password]&quot;)
+      .clear()
+      .type(&quot;test&quot;);
+    cy.get(&quot;button[type=submit]&quot;).click();
+    cy.url().should(&quot;include&quot;, &quot;/login&quot;);
+    cy.get(&quot;p&quot;).contains(&quot;Invalid username/password&quot;);
+  });
+
+  it(&quot;Logs out a user successfully&quot;, () =&gt; {
+    cy.get(&quot;button&quot;)
+      .contains(&quot;Login&quot;)
+      .click();
+    cy.url().should(&quot;include&quot;, &quot;/login&quot;);
+    cy.get(&quot;input[name=username]&quot;)
+      .clear()
+      .type(&quot;a@b.com&quot;);
+    cy.get(&quot;input[name=password]&quot;)
+      .clear()
+      .type(&quot;test&quot;);
+    cy.get(&quot;button[type=submit]&quot;).click();
+    cy.url().should(&quot;not.include&quot;, &quot;/login&quot;);
+    cy.get(&quot;nav&quot;)
+      .find(&quot;ul&quot;)
+      .find(&quot;button&quot;)
+      .contains(&quot;Sign out&quot;)
+      .click();
+    cy.get(&quot;nav&quot;)
+      .find(&quot;ul&quot;)
+      .find(&quot;button&quot;)
+      .contains(&quot;Login&quot;);
+    cy.get(&quot;nav&quot;)
+      .find(&quot;ul&quot;)
+      .contains(&quot;a@b.com&quot;)
+      .should(&quot;not.exist&quot;);
+  });
+});</code></pre>
+<p>Assuming both the mock authentication server and CRA development server are still running, open another terminal window and start Cypress.</p>
+<pre><code>$ npx cypress open</code></pre>
+<p>In the Cypress GUI, click <code>authentication.spec.js</code> to run the tests. Clicking the Stop button to terminate test execution.</p>
+<p><img src="./img/stoptest.png" alt=""></p>
+<p>Go to the <code>twoApps/hackerNews</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Added authentication and related tests&quot;</code></pre>
+<h3>Protected routes.</h3>
+<p>We now want to protect the Comments view from unauthenticated users. Create <code>src/components/authentication/privateRoute.js</code> and add the following: </p>
+<pre><code>import React from &quot;react&quot;;
+import { Route, Redirect } from &quot;react-router-dom&quot;;
+import Authentication from &quot;../../util/authenticate&quot;;
+
+const PrivateRoute = props =&gt; {
+  const { component: Component, ...rest } = props;
+  return (
+    &lt;Route
+      {...rest}
+      render={props =&gt; {
+        return Authentication.isAuthenticated === true ? (
+          &lt;Component {...props} /&gt;
+        ) : (
+          &lt;Redirect
+            to={{
+              pathname: &quot;/login&quot;,
+              state: { from: props.location }
+            }}
+          /&gt;
+        );
+      }}
+    /&gt;
+  );
+};
+
+export default PrivateRoute;</code></pre>
+<p>This component expects a component name prop and possibly others (rest). It uses the current user&#39;s authentication status to either renders the component passed to it or it redirects to the login page. To use the PrivateRoute component, in <code>src/index.js</code> change the line:</p>
+<pre><code>&lt;Route path=&quot;/posts/:post_id&quot; component={CommentPage} /&gt;</code></pre>
+<p>to</p>
+<pre><code>&lt;PrivateRoute path=&quot;/posts/:post_id&quot; component={CommentPage} /&gt;</code></pre>
+<p>and add the import:</p>
+<pre><code>import PrivateRoute from &quot;./components/authentication/privateRoute&quot;;</code></pre>
+<p>Assuming:</p>
+<ol>
+<li>The CRA and mock auth servers are running, and</li>
+<li>A user is not logged in.</li>
+</ol>
+<p>In the browser click the Comments link for any news item. You should be redirected to login. Use the same user credentials as earlier and the app will redirect you to the chosen Comment view. Return to the main view and click another Comment link. This time you are taken directly to the view.</p>
+<p>We will again add tests to ensure this functionality is not broken in future adaptive/corrective maintenance. In <code>cypress/integration/main-view.js</code> make the following addition:</p>
+<pre><code>describe(&quot;Main View &quot;, () =&gt; {
+  ........
+  describe(&quot;Add news item&quot;, () =&gt; {
+      ......
+  }
+  describe.only(&quot;Navigate to Comment page&quot;, () =&gt; {
+    it(&quot;requires a login before showing protected page&quot;, () =&gt; {
+      cy.get(&quot;span.newsitem&quot;)
+        .eq(1)
+        .contains(&quot;Comment&quot;)
+        .click();
+      cy.url().should(&quot;include&quot;, &quot;/login&quot;);
+      cy.get(&quot;input[name=username]&quot;)
+        .clear()
+        .type(&quot;a@b.com&quot;);
+      cy.get(&quot;input[name=password]&quot;)
+        .clear()
+        .type(&quot;test&quot;);
+      cy.get(&quot;button[type=submit]&quot;).click();
+      cy.url().should(&quot;include&quot;, &quot;/posts/2&quot;);
+      cy.get(&quot;a&quot;).contains(&quot;Samsung&#39;s folding phone&quot;);
+    });
+    it(&quot;shows protected page when user already logged-in&quot;, () =&gt; {
+      cy.get(&quot;button&quot;)
+        .contains(&quot;Login&quot;)
+        .click();
+      cy.get(&quot;input[name=username]&quot;)
+        .clear()
+        .type(&quot;a@b.com&quot;);
+      cy.get(&quot;input[name=password]&quot;)
+        .clear()
+        .type(&quot;test&quot;);
+      cy.get(&quot;button[type=submit]&quot;).click();
+      cy.get(&quot;span.newsitem&quot;)
+        .eq(1)
+        .contains(&quot;Comment&quot;)
+        .click();
+      cy.url().should(&quot;include&quot;, &quot;/posts/2&quot;);
+    });
+  });
+})</code></pre>
+<p>Run the tests via the Cypress GUI.</p>
+<p>Go to the <code>twoApps/hackerNews</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Protected comments view&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="ContactsApp">
+            <h2>Contact List App.</h2>
+<p>We want to add Google Map to the contact details page. Ideally the map location should correspond to the person&#39;s address, however the longitude and latitude readings provided by the Random User web API are randomly generated and are invalid for mapping purposes. Therefore, we will hard-code it for WIT, Waterford for illustration purposes.</p>
+<p>Create a new component file <code>contactList/src/components/map/index.js</code> and paste in the following:</p>
+<pre><code>import React from &quot;react&quot;;
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from &quot;react-google-maps&quot;
+
+const Map = withScriptjs(withGoogleMap((props) =&gt; 
+  &lt;GoogleMap
+    defaultZoom={8}
+    defaultCenter={props.location}
+  &gt;
+    {props.isMarkerShown &amp;&amp; &lt;Marker position={props.location } /&gt;}
+  &lt;/GoogleMap&gt;
+))
+
+export default Map;</code></pre>
+<p>The react-google-map library provides components and uses the higher order component pattern to simplify our integration with the Google Map service - it encapsulates the complicated coding aspects inside these two constructs. The components include GoogleMap and Marker, while HOCs include withScriptjs() and withGoogleMap().</p>
+<p>In <code>src/components/contactPublic/index.js</code> make the following changes:</p>
+<pre><code>....... other imports .....
+import Map from &quot;../map/&quot;;
+
+export default ({ user }) =&gt; {
+  const location = {lng:-7.142379, lat: 52.246502} // WIT, Waterford
+  const name = . . . . . 
+  return ( . . . . . )
+}</code></pre>
+<p>In the same file, replace the JSX excerpt:</p>
+<pre><code>&lt;div className=&quot;col-5 bg-secondary text-light&quot;&gt;
+      &lt;span&gt;Map placeholder&lt;/span&gt;
+  &lt;/div&gt;</code></pre>
+<p>with the following:</p>
+<pre><code>&lt;div className=&quot;col-5&quot; &gt;
+    &lt;Map
+      isMarkerShown
+      googleMapURL=&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places&quot;
+      loadingElement={&lt;div style={{ height: `100%` }} /&gt;}
+      location={location}
+      containerElement={&lt;div style={{ height: `400px` }} /&gt;}
+      mapElement={&lt;div style={{ height: `100%` }} /&gt;}
+    /&gt;
+&lt;/div&gt;</code></pre>
+<p>[The above code is not using a Google Map API key. To use one, change the  googleMapURL prop to:</p>
+<pre><code>googleMapURL=&quot;https://maps.googleapis.com/maps/api/js?key=[... your key ...]&amp;v=3.exp&amp;libraries=geometry,drawing,places&quot;</code></pre>
+<p>For security reasons the key should not appear directly in your code. Instead use an environment variable and ensure the <code>.env</code> configuration file is not pushed to your GitHub repo
+]</p>
+<p>Start the CRA server and navigate to any contact&#39;s detail page. The map should appear on the right:</p>
+<p><img src="./img/map.png" alt=""></p>
+<p>Go to the <code>twoApps/contactList</code> folder and commit this work:</p>
+<pre><code>$ git add -A
+$ git commit -m &quot;Added Google map support&quot;</code></pre>
+
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Startup">
+            <h2>Startup.</h2>
+<p>The Cypress framework has already been added to both our lab app - see devdependencies section of <code>package.json</code> in either project folder.</p>
+<h3>Contact List app.</h3>
+<p>In a terminal window, go to <code>twoApps/contactList</code> and start the Cypress interactive test runner:</p>
+<pre><code>$ npx cypress open</code></pre>
+<p>As this is the first time running the tool in this project, Cypress scaffolds some content, including <code>cypress.json</code> (for configuration) and a <code>cypress</code> subfolder (for the test code and other artifacts). </p>
+<p><img src="./img/cypressinit.png" alt=""></p>
+<p>Stop the test runner by hitting cntl/c.</p>
+<p>In <code>contactList/cypress.json</code> add this entry:</p>
+<pre><code>{
+    &quot;baseUrl&quot;: &quot;http://localhost:3000/&quot;
+}</code></pre>
+<p>This tells Cypress where our app is being hosted.</p>
+<p>Optional: In <code>contactList/cypress/integration</code> delete the <code>examples</code> folder - it contains sample test specs which can be useful when learning the Cypress API. </p>
+<h3>Hacker News app.</h3>
+<p>In <code>twoApps/hackerNews</code> repeat the above steps - we will use it later.</p>
+
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+    $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> Unless otherwise stated, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+</html>
