@@ -472,12 +472,18 @@ const Router = () =&gt;
 ReactDOM.render(&lt;Router /&gt;, document.getElementById(&quot;root&quot;));</code></pre>
 <p>To exercise the login functionality we will use a mock JWT-based authentication backend. Create a new folder <code>mockJwt</code> somewhere AWAY FROM the <code>twoApps</code> folder and from their type the following command:</p>
 <pre><code>$ git clone https://github.com/alex-c/mock-auth-backend</code></pre>
+<p>In <code>mockJwt/mock-auth-backend/config/defaults.json</code>, change the line:</p>
+<pre><code>&quot;cors-origin&quot;: &quot;http://localhost:8080&quot;,</code></pre>
+<p>to:</p>
+<pre><code>&quot;cors-origin&quot;: &quot;*&quot;,</code></pre>
+<p>This allow requests to the server to come from all (*) other origins, not just localhost:8080. The mock auth server has two default accounts configured in <code>mockJwt/mock-auth-backend/accounts.json</code> - modify them or add others if you wish.</p>
 <p>Go to <code>mockJwt/mock-auth-backend</code> and start the server:</p>
 <pre><code>$ node index.js</code></pre>
-<p>The mock auth server has two default accounts configured in <code>mockJwt/mock-auth-backend/accounts.json</code> - modify them or add others if you wish and restart the server.</p>
 <p>Open a second terminal at <code>twoApps/hackerNews</code> and start the CRA development server (npm start). In the browser, click the login button and login as:</p>
-<pre><code>Username: a@b.com
-Password: test</code></pre>
+<blockquote>
+<p>Username: a@b.com</p>
+<p>Password: test</p>
+</blockquote>
 <p>The main view now indicates the user is logged-in.</p>
 <p><img src="./img/login.png" alt=""></p>
 <p>Click the Sign Out button before continuing.</p>
